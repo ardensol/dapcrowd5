@@ -1,0 +1,33 @@
+<div id="devise-mini">
+  <div class="container">
+    <div class="well">
+
+    <% if @settings.initialized_flag %>
+      <h3>New User?</h3>
+      <p>Please create an account to continue.</p>
+    <% else %>
+      <h3>New Tilt Open App</h3>
+      <p>Looks like this is a new Tilt Open App! Go ahead and create a user that will serve as your site admin:</p>
+    <% end %>
+
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div><%= f.label :fullname, "Full Name" %>
+      <%= f.text_field :fullname, :autofocus => true %></div>
+
+      <div><%= f.label :email %>
+      <%= f.email_field :email %></div>
+
+      <div><%= f.label :password %>
+      <%= f.password_field :password %></div>
+
+      <button class="button hero-button show_loader" data-loader="user_form" type="submit" >Create my account</button>
+      <span class="loader" data-loader="user_form" style="display:none"></span>
+    <% end %>
+
+     <br/><%= link_to "Already have an account?", new_session_path(resource_name) %><br />
+
+    </div>
+  </div>
+</div>

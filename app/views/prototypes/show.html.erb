@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<div id="campaign">
+<div id="funding_area">
+  <div class="container clearfix">
+    <div class="center">
+      <h2 class="campaign_title"><%= @prototype.name %></a></h2>
+    </div>
+    <div class="clearfix">      
+        <div id="image">
+          <%= image_tag @prototype.image.url(:large) %>
+        </div>
+        <div id="backing">
+          <div class="fb-comments" data-href="<%= request.original_url %>" data-width="470" data-num-posts="7" data-share="false"></div>
+        </div>
+     </div>
+   </div>
+   
+  </div>
+</div>
+
+
+<% if user_signed_in? && current_user.admin?  %>
+<%= link_to 'Edit', edit_prototype_path(@prototype) %> |
+<%= link_to 'Back', prototypes_path %>
+<% end %>

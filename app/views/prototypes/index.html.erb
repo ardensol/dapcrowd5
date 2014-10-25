@@ -1,0 +1,72 @@
+<body>
+  <div class="hero-section pg _2" data-ix="show-nav">
+    <div class="w-container hero-text">
+      <h3 class="upper" >DISCUSS CURRENT SAMPLES AND PROTOTYPES WITH THE COMMUNITY<br>AND HELP US IMPROVE</h3>
+      <div class="div-block page-tittle">
+        <div class="hero-small-line header"></div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <br />
+    <h3 style="text-align: center;"> Join The Conversation, VOTE AND COMMENT ON YOUR FAVORITE PRODUCTS </h3>
+    <div id = "masonry-container" class="transitions-enabled infinite-scroll clearfix centered">
+      <div id = "pins" >
+        <% Prototype.order('cached_votes_up DESC').each do |prototype| %>
+          <div class = "box">
+            <figure>
+              <%= link_to( image_tag(prototype.image.url(:medium)), prototype) %>
+              <% if user_signed_in? %>
+                <p class = "description"> <%= link_to "upvote", like_prototype_path(prototype), class: 'vote', method: :put, remote: true, data: { type: :json } %> 
+                <%= content_tag :span, prototype.score %> </p>
+              <% else %> 
+                <p class = "description"> <%= link_to "upvote", new_user_registration_path %> 
+                <%= content_tag :span, prototype.score %> </p>
+              <% end %>
+            </figure> 
+              
+          </div>  
+          
+            <% if user_signed_in? && current_user.admin?  %>
+              <td><%= link_to 'Show', prototype %></td>
+              <td><%= link_to 'Edit', edit_prototype_path(prototype) %></td>
+              <td><%= link_to 'Destroy', prototype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        <% end %>
+      </div>
+
+        <br />
+        <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'New Prototype', new_prototype_path %>
+        <% end %>
+    </div>
+</body>
+
+<script>
+
+$(window).load(function(){ 
+
+  $(function(){
+
+    $('#masonry-container').masonry({
+      itemSelector: '.box',
+      columnWidth: 100,
+      gutterWidth: 10,
+      isFitWidth: true
+    });
+  });
+});
+
+</script>
+
+ <script>
+
+    $(document)
+
+      .on('ajax:send', '.description', function () { $(this).addClass('loading'); })
+      .on('ajax:complete', '.description', function () { $(this).removeClass('loading'); })
+      .on('ajax:error', '.description',function () { $(this).after('<div class="error">There was an issue.</div>'); })
+      .on('ajax:success', '.description', function(e, data, status, xhr) { $(this).find("span").html(data.count); });
+
+  </script>

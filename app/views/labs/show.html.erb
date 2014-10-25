@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<div id="campaign">
+<div id="funding_area">
+  <div class="container clearfix">
+    <div class="center">
+      <h2 class="campaign_title"><%= @lab.name %></a></h2>
+    </div>
+    <div class="clearfix">      
+        <div id="image">
+          <%= image_tag @lab.image.url(:large) %>
+        </div>
+        <div id="backing">
+          <h5> <%= @lab.description %> </h5>	
+          <div class="fb-comments" data-href="<%= request.original_url %>" data-width="470" data-num-posts="7" data-share="false"></div>
+        </div>
+     </div>
+   </div>
+   
+  </div>
+
+
+</div>
+
+<% if user_signed_in? && current_user.admin?  %>
+
+	<%= link_to 'Edit', edit_lab_path(@lab) %> |
+	<%= link_to 'Back', labs_path %>
+<% end %>
+
+<div id = "masonry-container" class="transitions-enabled infinite-scroll clearfix centered">
+      <div id = "pins" >
+        <% @lab.mainoptions.order('cached_votes_up DESC').each do |f| %>
+          <div class = "box">
+            <figure>
+              <%=  image_tag f.image(:medium) %>
+              <% if user_signed_in?  %>
+                <p class = "description"> <%= link_to "upvote", like_mainoption_path(f), class: 'vote', method: :put, remote: true, data: { type: :json } %> 
+                <%= content_tag :span, f.score %> </p>
+              <% else %> 
+                <p class = "description"> <%= link_to "upvote", new_user_registration_path %> 
+                <%= content_tag :span, f.score %> </p>
+              <% end %>
+            </figure> 
+          </div>
+         <% end %>         
+      </div>
+</div>
+
+<script>
+
+$(window).load(function(){ 
+
+  $(function(){
+
+    $('#masonry-container').masonry({
+      itemSelector: '.box',
+      columnWidth: 100,
+      gutterWidth: 10,
+      isFitWidth: true
+    });
+  });
+});
+
+</script>
+
+ <script>
+
+    $(document)
+
+      .on('ajax:send', '.description', function () { $(this).addClass('loading'); })
+      .on('ajax:complete', '.description', function () { $(this).removeClass('loading'); })
+      .on('ajax:error', '.description',function () { $(this).after('<div class="error">There was an issue.</div>'); })
+      .on('ajax:success', '.description', function(e, data, status, xhr) { $(this).find("span").html(data.count); });
+
+  </script>

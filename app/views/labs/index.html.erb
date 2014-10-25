@@ -1,0 +1,55 @@
+<body>
+  <div class="hero-section pg _2" data-ix="show-nav">
+    <div class="w-container hero-text">
+      <h3 class="upper" >DISCUSS CURRENT SAMPLES AND labS WITH THE COMMUNITY<br>AND HELP US IMPROVE</h3>
+      <div class="div-block page-tittle">
+        <div class="hero-small-line header"></div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+
+      <h3 style="text-align: center;"> Join The Conversation, VOTE AND COMMENT ON YOUR FAVORITE PRODUCTS </h3>
+
+<div id = "masonry-container" class="transitions-enabled infinite-scroll clearfix centered">
+      <div id = "pins" >
+        <% @labs.each do |lab| %>
+          <div class = "box">
+            <figure>
+              <%=  link_to(image_tag(lab.image.url(:medium)), lab) %>
+            </figure> 
+              
+          </div>  
+          
+            <% if user_signed_in? && current_user.admin?  %>
+              <td><%= link_to 'Show', lab %></td>
+              <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
+              <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        <% end %>
+      </div>
+
+        <br />
+        <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'New lab', new_lab_path %>
+        <% end %>
+    </div>
+</body>
+
+<script>
+
+$(window).load(function(){ 
+
+  $(function(){
+
+    $('#masonry-container').masonry({
+      itemSelector: '.box',
+      columnWidth: 100,
+      gutterWidth: 10,
+      isFitWidth: true
+    });
+  });
+});
+
+</script>

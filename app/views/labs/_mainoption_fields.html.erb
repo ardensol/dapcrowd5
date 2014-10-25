@@ -1,0 +1,12 @@
+    <fieldset>
+    	<%= f.label :name, "Title" %> 
+        <%= f.text_field :name %>
+        <%= f.file_field :image%>
+        <%= f.label :description, "Description" %> 
+        <%= f.text_field :description %>
+        <%= f.label :show, "Show?" %> 
+        <%= f.check_box :show %>
+        <br />
+        <%= f.check_box :_destroy%>      
+        <%= f.label :_destroy, "remove" %>
+    </fieldset> 
