@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   # GET /prototypes
   # GET /prototypes.json
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :verify_admin, :except => [:index, :show]
+  before_filter :verify_admin, :except => [:index, :show, :upvote]
 
   def index
     @prototypes = Prototype.all
