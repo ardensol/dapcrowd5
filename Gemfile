@@ -23,6 +23,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'masonry-rails'
+gem 'customerio', :git => 'https://github.com/customerio/customerio-ruby'
+
 
 group :production do
   gem 'newrelic_rpm'

@@ -8,6 +8,13 @@ GIT
       faraday_middleware (~> 0.9.0)
       json
 
+GIT
+  remote: https://github.com/customerio/customerio-ruby
+  revision: b0cc5e29f6c83b039466f3c1a9bb480567311a8a
+  specs:
+    customerio (0.5.1)
+      httparty (>= 0.5, < 1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -117,6 +124,9 @@ GEM
     formatador (0.2.4)
     friendly_id (4.0.9)
     hike (1.2.3)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     iso_country_codes (0.4.1)
     journey (1.0.4)
@@ -144,6 +154,7 @@ GEM
     momentjs-rails (2.5.0)
       railties (>= 3.1)
     multi_json (1.7.6)
+    multi_xml (0.5.5)
     multipart-post (1.2.0)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -256,6 +267,7 @@ DEPENDENCIES
   ckeditor
   coffee-rails (~> 3.2.1)
   crowdtilt!
+  customerio!
   devise (~> 3.2.0)
   email_spec
   factory_girl_rails
