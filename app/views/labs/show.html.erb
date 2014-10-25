@@ -31,7 +31,7 @@
 <div id = "masonry-container" class="transitions-enabled infinite-scroll clearfix centered">
       <div id = "pins" >
         <% @lab.mainoptions.order('cached_votes_up DESC').each do |f| %>
-          <div class = "box">
+          <div class = "box" style = "background: #fff;">
             <figure>
               <%=  image_tag f.image(:medium) %>
               <% if user_signed_in?  %>
