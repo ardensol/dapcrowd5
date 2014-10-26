@@ -19,15 +19,15 @@
 <script type="text/javascript">
   _cio.identify({
     // Required attributes
-    id: '<%= @user.id %>',           // Unique id for the currently signed in user in your application.
-    email: '<%= @user.email %>', // Email of the currently signed in user.
-    created_at: <%= @user.created_at.to_i %>,   // Timestamp in your system that represents when
+    id: '<%= @current_user.id %>',           // Unique id for the currently signed in user in your application.
+    email: '<%= @current_user.email %>', // Email of the currently signed in user.
+    created_at: <%= @current_user.created_at.to_i %>,   // Timestamp in your system that represents when
                               // the user first signed up. You'll want to send it
                               // as seconds since the epoch.
 
     // Optional (these are examples. You can name attributes what you wish)
 
-    fullname: '<%= @user.fullname%>',       // Add any attributes you'd like to use in the email subject or body.      // To use the example segments, set this to 'free' or 'premium'.
+    fullname: '<%= @current_user.fullname%>',       // Add any attributes you'd like to use in the email subject or body.      // To use the example segments, set this to 'free' or 'premium'.
   });
 </script>
 
