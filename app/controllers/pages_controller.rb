@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_filter :check_init
+  before_filter :current_user
 
   def index
     if @settings.default_campaign && ((user_signed_in? && current_user.admin?) || @settings.default_campaign.published_flag)
