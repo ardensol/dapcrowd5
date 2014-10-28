@@ -7,6 +7,7 @@ class PagesController < ApplicationController
         redirect_to campaign_home_url(@settings.default_campaign)
     else
       @campaigns = Campaign.order("created_at ASC")
+      @labs = Lab.order("created_at ASC")
       render 'theme/views/homepage'
     end
   end

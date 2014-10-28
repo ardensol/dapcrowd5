@@ -1,54 +1,11 @@
 <body>
-  <div class="hero-section" id="home" data-ix="show-nav">
+  <div class="hero-section hero-section pg _5 project" id="home" data-ix="show-nav">
       
     <div class="w-container hero-text">
-      <h3 class="upper hero" data-ix="upper">CROWDFUNDED&nbsp;MENSWEAR</h3>
-      <h1 class="hero-headline" data-ix="hero-headline">welcome to <strong>DAPPERCROWD</strong></h1><a class="button hero-button" href="#portfolio" data-ix="button-hero-button">VIEW PROJECTS</a>
-      <a class="w-inline-block hero-arrow-link-block" href="#about-us" data-ix="hero-arrow-link-block">
-        <%= image_tag("arrow.png", width: "20") %>
-      </a>
-    </div>
-  </div>
-  <div class="section" id="about-us">
-    <div class="w-container">
-      <div class="text-hero">
-        <h3 class="upper title">Quality Clothes at Wholesale Prices</h3>
-        <h2 class="white-tittle">WE Are DAPPERCROWD</h2>
-        <div class="div-block">
-          <div class="hero-small-line header"></div>
-        </div>
-        <div class="w-row">
-          <div class="w-col w-col-4 colum-facts">
-            <%= image_tag("1.min.jpg") %>
-            <h3 class="service-tittle _2">MENSWEAR&nbsp;REDEFINED</h3>
-            <p>We visit brands and factories throughout the world to find the best products for you.&nbsp;&nbsp;Each item is limited edition or an early release, giving you inside access unlike anywhere else.</p>
-          </div>
-          <div class="w-col w-col-4 column-fact">
-            <%= image_tag("about-ussuit.jpg")%>
-            <h3 class="service-tittle _2">QUALITY GARMENTS</h3>
-            <p>We know menswear.&nbsp;&nbsp;We've been in the industry for years and have built relationships with some of the best factories and brands in the world.</p>
-          </div>
-          <div class="w-col w-col-4 column-fact">
-            <%= image_tag("about-usshoe.jpg")%>
-            <h3 class="service-tittle _2">AFFORDABLE&nbsp;PRICING</h3>
-            <p>We match supply and demand so that we can give you the best prices.&nbsp;&nbsp;There's no waste when we do a production run so we pass on those savings to you.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="section facts">
-    <div class="w-container">
-      <div class="w-row">
-        <div class="w-col w-col-4 colum-facts">
-          <h2 class="fakts"></h2>
-        </div>
-        <div class="w-col w-col-4 colum-facts">
-          <h2 class="fakts">Proudly BUILT&nbsp;IN</h2>
-          <div class="hero-small-line team fact"></div>
-          <h3 class="numbers">NEW&nbsp;YORK&nbsp;CITY</h3>
-        </div>
-        <div class="w-col w-col-4 colum-facts"></div>
+      <h3 class="upper _2" data-ix="upper">Crowdfunded Menswear That Doesn't Hurt your wallet</h3>
+      <h1 data-ix="hero-headline"><strong>Dapper</strong> Crowd&nbsp;</h1>
+      <div class="div-block page-tittle">
+        <div class="hero-small-line header" data-ix="hero-line"></div>
       </div>
     </div>
   </div>
@@ -64,7 +21,7 @@
         <div class="div-block">
           <div class="hero-small-line header"></div>
         </div>
-      </div>
+    </div>
 
 
     <div class="campaigns">
@@ -141,12 +98,32 @@
   </div>
 </div>
   </div>
-  <div class="color-stripe">
+  <div class="section facts">
     <div class="w-container">
-      <h3 class="upper stipe">Clothing And Manufacturing is What We Do</h3>
-      <h1 class="headline-stripe">We BRING&nbsp;<strong>IDEAS</strong> TO LIFE</h1>
+      <div class="w-row">
+        <div class="w-col w-col-4 colum-facts">
+          <h2 class="fakts"></h2>
+        </div>
+        <div class="w-col w-col-4 colum-facts">
+          <h2 class="fakts">Proudly BUILT&nbsp;IN</h2>
+          <div class="hero-small-line team fact"></div>
+          <h3 class="numbers">NEW&nbsp;YORK&nbsp;CITY</h3>
+        </div>
+        <div class="w-col w-col-4 colum-facts"></div>
+      </div>
     </div>
   </div>
+  <br />
+  <div class="text-hero">
+        <h2 class="white-tittle"><strong>CURRENT&nbsp;LABS</strong></h2>
+        <div class="div-block">
+          <div class="hero-small-line header"></div>
+        </div>
+  </div>
+
+  <%= render :partial => "labs/image" %>
+  
+  
   
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
