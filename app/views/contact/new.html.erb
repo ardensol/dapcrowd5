@@ -1,0 +1,24 @@
+<div class="w-container">
+  <h2> Contact Us </h2>
+  <div class = "w-form">
+    <%= form_for @message, :url => contact_path do |form| %>
+        <div>
+          <%= form.text_field :name, placeholder: "Enter Your Name", class: "w-input text-field-one-third"%>
+        </div>
+        
+        <div class="field">
+          <%= form.text_field :email, placeholder: "Enter Your Email", class: "w-input text-field-one-third" %>
+        </div>
+        <div class="field">
+          <%= form.text_field :subject, placeholder: "Subject", class: "w-input text-field-one-third" %>
+        </div>
+        
+        <div class="field">
+          <%= form.text_area :body, placeholder: "Your Message", class: "w-input text-field" %>
+        </div>
+      
+        <%= form.submit "Send", class: "w-button button contact" %>
+      
+    <% end %>
+  </div>
+</div>  

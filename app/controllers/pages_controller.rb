@@ -11,4 +11,10 @@ class PagesController < ApplicationController
       render 'theme/views/homepage'
     end
   end
+
+  def wedding
+    render 'theme/views/wedding'
+  end
+
+
 end

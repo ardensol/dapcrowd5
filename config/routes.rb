@@ -45,6 +45,10 @@ Crowdhoster::Application.routes.draw do
     match '/user/settings',                    to: 'devise/registrations#edit',             as: :user_settings
   end
 
+
+  match '/wedding',                     to: 'pages#wedding'
+  match 'contact' => 'contact#new', :as => 'contact', :via => :get
+  match 'contact' => 'contact#create', :as => 'contact', :via => :post
   # ADMIN
   get '/admin',                                to: 'admin#admin_dashboard',                 as: :admin_dashboard
   match '/admin/homepage',                     to: 'admin#admin_homepage',                  as: :admin_homepage
