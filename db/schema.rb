@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141011205409) do
+ActiveRecord::Schema.define(:version => 20141028000838) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -262,6 +262,8 @@ ActiveRecord::Schema.define(:version => 20141011205409) do
     t.string   "fullname"
     t.boolean  "admin",                            :default => false
     t.boolean  "wants_admin_payment_notification", :default => true,  :null => false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

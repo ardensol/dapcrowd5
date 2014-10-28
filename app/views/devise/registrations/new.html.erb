@@ -1,33 +1,36 @@
-<div id="devise-mini">
-  <div class="container">
-    <div class="well">
 
-    <% if @settings.initialized_flag %>
-      <h3>New User?</h3>
-      <p>Please create an account to continue.</p>
-    <% else %>
-      <h3>New Tilt Open App</h3>
-      <p>Looks like this is a new Tilt Open App! Go ahead and create a user that will serve as your site admin:</p>
-    <% end %>
+<div class="hero2">
+    <p class="large brandon">Dapper Crowd</p>
+    <p class="small brandon">Crowd Funded Menswear<br>that doesn't hurt your wallet.</p>
+    <br />
+      <%= button_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), :class => "facebook", :style => "margin-left: 25px;" %>
+    <h3 style="padding: 5px 120px;"> Or </h3>
 
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
 
-      <div><%= f.label :fullname, "Full Name" %>
-      <%= f.text_field :fullname, :autofocus => true %></div>
 
-      <div><%= f.label :email %>
-      <%= f.email_field :email %></div>
 
-      <div><%= f.label :password %>
-      <%= f.password_field :password %></div>
+    <div class="form-wrap clearfix">
 
-      <button class="button hero-button show_loader" data-loader="user_form" type="submit" >Create my account</button>
-      <span class="loader" data-loader="user_form" style="display:none"></span>
-    <% end %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    
+      <div class="twofields">
+        <div>
+        <%= f.text_field :fullname, :class => "signup_field", :autofocus => true, :placeholder => "First Name" %></div>
+        <div>
+        <%= f.email_field :email, :class => "signup_field", :placeholder => "Email" %></div>
+      </div>
+        <div>
+        <%= f.password_field :password, :class => "signup_field", :placeholder => "Password"%></div>
 
-     <br/><%= link_to "Already have an account?", new_session_path(resource_name) %><br />
-
+        <button class="button hero-button show_loader" data-loader="user_form" type="submit" style="margin-left: 20px; align: left;" >Sign Up</button> 
+           <p style="display: inline-block; margin-left: 5px;"> or </p> <a style="display: inline-block; font-size: 20px; color: #969799; vertical-align: middle;" href="/account/sign_in">Login</a><br />
+        <span class="loader" data-loader="user_form" style="display:none"></span>
+        
+      <% end %>
+      
     </div>
-  </div>
+
+
 </div>
+
+

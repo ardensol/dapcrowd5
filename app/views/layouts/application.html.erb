@@ -11,13 +11,14 @@
 <% content_for :scripts do %>
   <%= render 'layouts/google_analytics' %>
 <% end %>
+
 <% content_for :header do %>
-  <%= render 'layouts/social_js' %>
-  <%= render 'layouts/navbar' %>
-  <%= render 'theme/views/header' %>
+  <%= render 'layouts/social_js' unless @noheader %>
+  <%= render 'layouts/navbar' unless @noheader %>
+  <%= render 'theme/views/header' unless @noheader %>
 <% end %>
 <% content_for :footer do %>
-  <%= render 'theme/views/footer' %>
+  <%= render 'theme/views/footer' unless @nofooter %>
   <%= render 'layouts/customerio' %>
 <% end %>
 <% content_for :body_bottom do %>

@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   database: Crowdtiltopendev5
   host: localhost
-  username: postgres
+  username: carlos
   password: latino
 
 # Warning: The database defined as "test" will be erased and
@@ -12,12 +12,12 @@ test:
   adapter: postgresql
   database: Crowdtiltopentest5
   host: localhost
-  username: postgres
+  username: carlos
   password: latino
 
 production:
   adapter: postgresql
   database: Crowdtiltopenprod5
   host: localhost
-  username: postgres
+  username: carlos
   password: latino

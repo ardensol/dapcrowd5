@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 ruby '1.9.3'
 
 # Framework and core dependencies
@@ -24,6 +24,7 @@ gem 'jquery-ui-rails'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'masonry-rails'
 gem 'customerio', :git => 'https://github.com/customerio/customerio-ruby'
+gem 'omniauth-facebook'
 
 
 group :production do

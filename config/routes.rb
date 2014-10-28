@@ -29,11 +29,19 @@ Crowdhoster::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
   # PAGES
-  root                                         to: 'pages#index'
+
 
   # USERS
-  devise_for :users, { path: 'account' }
+  devise_for :users, 
+    path: 'account', 
+     controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks"} 
   devise_scope :user do
+    authenticated :user do
+      root :to => 'pages#index'
+    end
+    unauthenticated :user do
+      root :to => 'registrations#new', as: :unauthenticated_root
+    end
     match '/user/settings',                    to: 'devise/registrations#edit',             as: :user_settings
   end
 
