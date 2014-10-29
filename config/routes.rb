@@ -34,19 +34,22 @@ Crowdhoster::Application.routes.draw do
   # USERS
   devise_for :users, 
     path: 'account', 
-     controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks"} 
+    controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks"} 
   devise_scope :user do
     authenticated :user do
       root :to => 'pages#index'
+      match '/wedding',                     to: 'pages#wedding'
     end
     unauthenticated :user do
       root :to => 'registrations#new', as: :unauthenticated_root
+      match '/wedding',                     to: 'pages#wedding_sign_up'
     end
     match '/user/settings',                    to: 'devise/registrations#edit',             as: :user_settings
   end
 
 
-  match '/wedding',                     to: 'pages#wedding'
+  
+  
   match 'contact' => 'contact#new', :as => 'contact', :via => :get
   match 'contact' => 'contact#create', :as => 'contact', :via => :post
   # ADMIN

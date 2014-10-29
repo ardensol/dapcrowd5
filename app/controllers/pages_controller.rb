@@ -16,5 +16,12 @@ class PagesController < ApplicationController
     render 'theme/views/wedding'
   end
 
+  def wedding_sign_up
+    @nofooter = true
+    @noheader = true
+    render 'theme/views/wedding_sign_up'
+  end
+
+
 
 end
