@@ -22,6 +22,10 @@ class PagesController < ApplicationController
     render 'theme/views/wedding_sign_up'
   end
 
+  def discussion
+    render 'theme/views/discussion'
+  end
+
 
 
 end

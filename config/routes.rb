@@ -47,7 +47,7 @@ Crowdhoster::Application.routes.draw do
     match '/user/settings',                    to: 'devise/registrations#edit',             as: :user_settings
   end
 
-
+  match '/discussion',                     to: 'pages#discussion'
   
   
   match 'contact' => 'contact#new', :as => 'contact', :via => :get
