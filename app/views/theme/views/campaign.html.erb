@@ -44,7 +44,7 @@
 
           <% if @campaign.goal_type == 'dollars' %>            
             <li class="stats">
-              <%= number_to_percentage @campaign.raised_amount / @campaign.goal_dollars, precision: 0 %><span> funded </span>
+              <%= number_to_percentage @campaign.stats_tilt_percent, precision: 0 %><span> funded </span>
             </li>
           <% else %>
             <li class="stats">
