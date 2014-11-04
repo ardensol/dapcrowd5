@@ -26,6 +26,12 @@ class PagesController < ApplicationController
     render 'theme/views/discussion'
   end
 
-
+  def fitguide
+    render 'theme/views/fitguide'
+  end 
+  
+  def howitworks
+    render 'theme/views/howitworks'
+  end
 
 end

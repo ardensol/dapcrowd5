@@ -282,11 +282,13 @@ p {
 .hero-section.pg.contact {
   padding-bottom: 150px;
   background-image: url('../assets/CONTACT PAGE.jpg');
-  background-position: 50% 100%;
+  background-size: 1000px 1000px;
+  background-repeat: no-repeat;
 }
 .hero-section.pg._5 {
   background-image: url('../assets/4 (1).jpg');
   background-position: 50% 50%;
+
 }
 .hero-section.pg.project {
   padding-bottom: 150px;
@@ -673,7 +675,9 @@ p {
 .team-column {
   text-align: center;
 }
-.icon-image {
+.icoimage {
+  position: relative;
+  top: 10px;
   float: none;
 }
 .socil-icon {
@@ -1029,6 +1033,7 @@ p {
   float: left;
   border: 1px solid #adafb3;
   border-radius: 22px;
+  background-color: #f2eded;
 }
 
 .prototype {
