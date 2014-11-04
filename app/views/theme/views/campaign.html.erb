@@ -42,14 +42,9 @@
       <div id="backing">
         <ul>
 
-          <% if @campaign.goal_type == 'dollars' %>
-            <li class="stats" id="backers">
-              <%= number_with_delimiter @campaign.number_of_contributions.to_i, :delimiter => "," %>
-              <span><%= @campaign.contributor_reference.pluralize(@campaign.number_of_contributions.to_i) %></span>
-            </li>
+          <% if @campaign.goal_type == 'dollars' %>            
             <li class="stats">
-              <%= number_to_currency @campaign.raised_amount.ceil, :precision => 0 %>
-              <span>of <%= number_to_currency @campaign.goal_dollars.ceil, :precision => 0 %></span>
+              <%= number_to_percentage @campaign.raised_amount / @campaign.goal_dollars, precision: 0 %><span> funded </span>
             </li>
           <% else %>
             <li class="stats">
@@ -151,17 +146,6 @@
                   <% if reward.image_url.present? %><p class="image"><img src="<%= reward.image_url %>"></p><% end %>
                   <p class="description"><%= reward.description %></p>
                   <p class="delivery">Estimated Delivery: <%= reward.delivery_date %></p>
-                  <% if @campaign.expired? %>
-                    <% if reward.include_claimed? %>
-                      <p class="claimed">
-                        <%= reward.payments.successful.count %> <%= "of #{reward.number}" unless reward.unlimited? %> claimed <%= '(All gone!)' if reward.sold_out? %>
-                      </p>
-                    <% end %>
-                  <% else %>
-                    <p class="claimed">
-                      <%= reward.payments.successful.count %> <%= "of #{reward.number}" unless reward.unlimited? %> claimed <%= '(All gone!)' if reward.sold_out? %>
-                    </p>
-                  <% end %>
                 </a>
               </li>
             <% end %>
@@ -221,21 +205,4 @@
 <% end %>
 </div>
 
-<% if @campaign.include_comments %>
-  <div class="hide"><a href="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>#disqus_thread" data-disqus-identifier="<%= @campaign.slug %>" id="parse"></a></div>
-  <script type="text/javascript">
-    var disqus_shortname = '<%= @campaign.comments_shortname.downcase %>';
-    (function () {
-      $.getScript("//disqus.com/forums/"+disqus_shortname+"/get_num_replies.js?url0="+encodeURIComponent("<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"));
-    }());
-  </script>
-  <script>
-    window.onload = function(){
 
-      var parse = document.getElementById('parse');
-      var count = document.getElementById('count');
-
-      count.innerHTML=parseInt(parse.innerHTML,10);
-    };
-  </script>
-<% end %>
