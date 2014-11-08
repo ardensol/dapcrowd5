@@ -9,8 +9,14 @@ class CampaignsController < ApplicationController
 
   # The load_campaign before filter grabs the campaign object from the db
   # and makes it available to all routes
-
+  def show
+    home
+  end
+  
   def home
+    @commentable = @campaign
+    @comments = @commentable.comments
+    @comment = Comment.new
     render 'theme/views/campaign', layout: 'layouts/application'
   end
 
