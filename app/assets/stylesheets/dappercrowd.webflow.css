@@ -1109,6 +1109,36 @@ p {
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+.comment {
+  margin-top: 18px;
+  clear: both;
+  margin: 40px 0 4px 0;
+  max-width: 620px;
+  align-items: flex-start;
+}
+
+.comment-rule{
+  border: 1px solid #E8E8E8;
+  opacity: 0.7;
+}
+
+.comment-rule.child{
+  margin: 13px 0 0 46px;
+}
+.comment-body {
+  word-wrap: break-word;
+  max-width: 620px;
+  width: 100%;
+  flex: 1;
+}
+
+.comment-user-name {
+  margin: -2px 0 0 0;
+  font-size: 18px;
+  display: inline;
+}
+
+
 
 html.w-mod-js *[data-ix="display-none"] {
   display: none;

@@ -1,7 +1,12 @@
+<hr class="comments-rule">
 <% @comments.each do |comment| %>
-	<div>
-		<div style: "float: left;margin-right: 5px;"><%= comment.user_id %></div>
-		<div><%= comment.content %></div>
-	</div>
-	<div style="clear: left; height: 20px;" ></div>	
+	<div class="comment">	
+		<div class="comment-body">
+			<div class= "comment-user-name"><%= comment.user_id %></div>
+			<div><%= comment.content %></div>
+		</div>
+
+		<hr class ="comments-rule child">
+	
+	</div>	
 <% end %>
