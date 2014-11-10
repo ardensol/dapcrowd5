@@ -17,6 +17,7 @@ class CampaignsController < ApplicationController
     @commentable = @campaign
     @comments = @commentable.comments
     @comment = Comment.new
+    @user = @comment.user
     render 'theme/views/campaign', layout: 'layouts/application'
   end
 

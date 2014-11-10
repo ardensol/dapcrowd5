@@ -9,9 +9,14 @@
 				<div class = "profile-header"> 
 					<h3><%= @profile.user.fullname %></h3>
 				</div>
-				<p class="meta">Joined
-					<span class="joined"><%= @profile.user.created_at.strftime("%B %e, %Y") %></span>
+				<p class="meta">
+					<small class="comment-user-height">Height: <%= @profile.height %> | </small>
+				<small class="comment-user-height">Weight: <%= @profile.weight %> | </small>
+				<small class="comment-user-height">Style: <%= @profile.byline %> | </small>
+					<span class="joined">Location: <%= @profile.location %> | </span>
+					Joined <span class="joined"><%= @profile.user.created_at.strftime("%B %e, %Y") %></span>	
 				</p>	
+				<p class="bio"><%=@profile.about %> </p>
 			</div>		
 		</div>
 	</div>	

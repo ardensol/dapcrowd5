@@ -10,7 +10,29 @@
 
         <div>
                 <%= f.file_field :avatar%>
-              </div>
+        </div>
+
+        <%= f.fields_for :profile do |ff| %>
+
+            <div><%=ff.label :height %> </div>
+            <div><%=ff.text_field :height %> </div>
+
+
+            <div><%=ff.label :weight %> </div>
+            <div><%=ff.text_field :weight %> </div>
+
+            <div><%=ff.label "Give a short description of your style to display in comments." %> </div>
+            <div><%=ff.text_field :byline %> </div>
+
+            <div><%=ff.label :location %> </div>
+            <div><%=ff.text_field :location %> </div>
+
+
+            <div><%=ff.label :about %> </div>
+            <div><%=ff.text_field :about %> </div>
+            
+          
+        <%end%>
 
         <div><%= f.label :fullname, "Name" %>
         <%= f.text_field :fullname, :autofocus => true %></div>

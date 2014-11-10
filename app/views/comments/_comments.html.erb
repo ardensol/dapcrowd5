@@ -2,7 +2,17 @@
 <% @comments.each do |comment| %>
 	<div class="comment">	
 		<div class="comment-body">
-			<div class= "comment-user-name"><%= comment.user_id %></div>
+			<div class= "comment-user-name"><%= link_to( comment.user.fullname, profile_path(comment.user.profile)) %></div>
+			<div class="comment-user-info">
+				<small class="comment-user-height"><%= comment.user.profile.height %> | </small>
+				<small class="comment-user-height"><%= comment.user.profile.weight %> | </small>
+				<small class="comment-user-height"><%= comment.user.profile.byline %> </small>
+
+			</div>
+			<div class= "comment-image-container">
+				<a class="user-image-link-post"><%=link_to( image_tag(comment.user.avatar.url(:medium), :class => "circular-image-mini"), profile_path(comment.user.profile)) %> </a>
+
+			</div>
 			<div><%= comment.content %></div>
 		</div>
 

@@ -1118,6 +1118,18 @@ p {
   align-items: flex-start;
 }
 
+.comment-user-info{
+  margin-top: 2px;
+  opacity: 0.8;
+  display: table-cell;
+}
+
+
+.comment-user-height{
+  font-weight: 500;
+  color: #999;
+  font-size: 15px;
+}
 .comment-rule{
   border: 1px solid #E8E8E8;
   opacity: 0.7;
@@ -1139,8 +1151,21 @@ p {
   display: inline;
 }
 
+.comment-image-container{
+  float: right;
+  position: relative;
+  top: -6px;
+  padding-right: 8px;
+}
+
 .circular-image {
   border-radius: 500em;
+}
+
+.circular-image-mini {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 }
 
 .avatar {
@@ -1218,6 +1243,12 @@ p {
 .meta {
   color: #9da6ab;
   margin: 0.6em 0 0.8em 10em;
+}
+.joined{
+  margin-right: 0.9em;
+}
+.bio {
+  margin-left: 11em;
 }
 
 html.w-mod-js *[data-ix="display-none"] {
