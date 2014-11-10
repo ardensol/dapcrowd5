@@ -8,6 +8,14 @@
 				</div>
 				<div class = "profile-header"> 
 					<h3><%= @profile.user.fullname %></h3>
+
+					<% if @profile.user == current_user %>
+						<%= link_to "Edit Profile", "/user/settings" %>
+					<%else%>
+					<%end%>
+
+
+
 				</div>
 				<p class="meta">
 					<small class="comment-user-height">Height: <%= @profile.height %> | </small>
@@ -28,8 +36,7 @@
 			<div class="w-col-12">
 				<div class="tab-menu">
 					<a class="tab">Comments</a>
-					<a class="tab">Followers</a>
-					<a class="tab">Following</a>
+					#add followers/following
 				</div>	
 			</div>	
 		</div>

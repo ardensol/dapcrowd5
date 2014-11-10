@@ -25,6 +25,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'masonry-rails'
 gem 'customerio', :git => 'https://github.com/customerio/customerio-ruby'
 gem 'omniauth-facebook'
+gem 'obfuscate_id'
 
 
 group :production do

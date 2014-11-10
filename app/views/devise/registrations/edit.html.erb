@@ -8,28 +8,28 @@
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
         <%= devise_error_messages! %>
 
-        <div>
-                <%= f.file_field :avatar%>
-        </div>
+        <div> <strong>Choose Your Profile Picture</strong> </div>
+        <div><%= f.file_field :avatar%></div>
+        </br>
 
         <%= f.fields_for :profile do |ff| %>
 
             <div><%=ff.label :height %> </div>
-            <div><%=ff.text_field :height %> </div>
+            <div><%=ff.select :height, options_for_select([['5\' 0','60'],['5\' 1','61'],['5\' 2','62'],['5\' 3','63'],['5\' 4','64'],['5\' 5','65'],['5\' 6','66'],['5\' 7','67'],['5\' 8','68'],['5\' 9','69'],['5\' 10','70'],['5\' 11','71'],['6\' 0','72'],['6\' 1','73'],['6\' 2','74'],['6\' 3','75'],['6\' 4','76']]) %> </div></br>
 
 
             <div><%=ff.label :weight %> </div>
-            <div><%=ff.text_field :weight %> </div>
+            <div><%=ff.select :weight, options_for_select([['100','100'],['110','110'],['120','120'],['130','130'],['140','140'],['150','150'],['160','160'],['170','170'],['180','180'],['190','190'],['200','200'],['210','210'],['220','220'],['230','230'],['240','240'],['250+','275']]) %> </div></br>
 
             <div><%=ff.label "Give a short description of your style to display in comments." %> </div>
-            <div><%=ff.text_field :byline %> </div>
+            <div><%=ff.text_field :byline %> </div></br>
 
             <div><%=ff.label :location %> </div>
-            <div><%=ff.text_field :location %> </div>
+            <div><%=ff.text_field :location %> </div></br>
 
 
             <div><%=ff.label :about %> </div>
-            <div><%=ff.text_field :about %> </div>
+            <div><%=ff.text_area :about, rows: 6 %> </div>
             
           
         <%end%>

@@ -122,8 +122,11 @@
             <div class="tab-pane fade in" id="tab2">
               <div class="comment_content">
                 <div id="disqus_thread"></div>
-
+                <% if user_signed_in? %>
                 <%= render :partial => "comments/form" %>
+                <% else %> 
+                <%= link_to "Sign Up to Comment", new_user_registration_path %>  
+                <% end %>
                 <%= render :partial => "comments/comments" %>
 
               </div>
