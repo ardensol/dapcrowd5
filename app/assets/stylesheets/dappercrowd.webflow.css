@@ -748,12 +748,7 @@ p {
   color: white;
   letter-spacing: 1px;
 }
-.nav-link.w--current {
-  color: #d4d8d9;
-}
-.nav-link.w--current:hover {
-  color: white;
-}
+
 .nav-link.scroll-down {
   margin-right: auto;
   color: #828282;

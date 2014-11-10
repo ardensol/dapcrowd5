@@ -21,7 +21,6 @@
 //= require additional-methods.min
 //= require ckeditorbase
 //= require ckeditor/init
-//= require bootstrap
 //= require main
 //= require admin
 //= require campaigns
@@ -39,3 +38,4 @@
 //= require masonry/jquery.infinitescroll.min
 //= require masonry/modernizr-transitions
 //= require labs
+//= require bootstrap

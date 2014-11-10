@@ -1,0 +1,17 @@
+  <div id = "masonry-container" class="transitions-enabled infinite-scroll clearfix centered">
+              <div id = "pins" >
+                <% @lab.mainoptions.order('cached_votes_up DESC').each do |f| %>
+                  <div class = "box" style = "background: #fff;">
+                    <figure>
+                      <%=  image_tag f.image(:medium) %>
+                      <% if user_signed_in?  %>
+                        <p class = "description"> <%= link_to "upvote", like_mainoption_path(f), class: 'vote', method: :put, remote: true, data: { type: :json } %> 
+                        <%= content_tag :span, f.score %> </p>
+                      <% else %> 
+                        <p class = "description"> <%= link_to "upvote", new_user_registration_path %> 
+                        <%= content_tag :span, f.score %> </p>
+                      <% end %>
+                    </figure> 
+                  </div>
+                 <% end %>         
+              </div>

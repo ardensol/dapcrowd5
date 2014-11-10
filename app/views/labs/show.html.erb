@@ -1,61 +1,58 @@
 <p id="notice"><%= notice %></p>
 
 <div id="campaign">
-<div id="funding_area">
-  <div class="container clearfix">
-    <div class="center">
-      <h2 class="campaign_title"><%= @lab.name %></a></h2>
-    </div>
-    <div class="clearfix">      
-        <div id="image">
-          <%= image_tag @lab.image.url(:large) %>
-        </div>
-        <div id="backing">
-          <h5> <%= @lab.description %> </h5>	
-          <div>
-            <p> Voters </p>
-            <% @lab.mainoptions.each do |f| %>
-              <%  f.votes_for.voters.each do |p| %>
-                 <%= link_to( image_tag(p.avatar(:medium), :class => "circular-image-mini"), profile_path(p.profile)) %> 
-              <% end %>
-            <% end %>  
-
-
-          </div>
-        </div>
-     </div>
-   </div>
-   
-  </div>
-
-
-</div>
-
-<% if user_signed_in? && current_user.admin?  %>
-
-	<%= link_to 'Edit', edit_lab_path(@lab) %> |
-	<%= link_to 'Back', labs_path %>
-<% end %>
-
-<div id = "masonry-container" class="transitions-enabled infinite-scroll clearfix centered">
-      <div id = "pins" >
-        <% @lab.mainoptions.order('cached_votes_up DESC').each do |f| %>
-          <div class = "box" style = "background: #fff;">
-            <figure>
-              <%=  image_tag f.image(:medium) %>
-              <% if user_signed_in?  %>
-                <p class = "description"> <%= link_to "upvote", like_mainoption_path(f), class: 'vote', method: :put, remote: true, data: { type: :json } %> 
-                <%= content_tag :span, f.score %> </p>
-              <% else %> 
-                <p class = "description"> <%= link_to "upvote", new_user_registration_path %> 
-                <%= content_tag :span, f.score %> </p>
-              <% end %>
-            </figure> 
-          </div>
-         <% end %>         
+  <div id="funding_area">
+    <div class="container clearfix">
+      <div class="center">
+        <h2 class="campaign_title"><%= @lab.name %></a></h2>
       </div>
+      <div class="clearfix">      
+          <div id="image">
+            <%= image_tag @lab.image.url(:large) %>
+          </div>
+          <div id="backing">
+            <h5> <%= @lab.description %> </h5>	
+            <div>
+              <p> Voters </p>
+              <% @lab.mainoptions.each do |f| %>
+                <%  f.votes_for.voters.each do |p| %>
+                   <%= link_to( image_tag(p.avatar(:medium), :class => "circular-image-mini"), profile_path(p.profile)) %> 
+                <% end %>
+              <% end %>  
+            </div>
+          </div>
+       </div>
+     </div>   
+  </div>
 </div>
 
+
+<div id="campaign_body">
+  <div class="container clearfix">
+     <div class="main_content">
+       <div class="tabbable">
+      
+          <div class="tab-content">
+              <div class="tab-pane active" id="tab1">
+                <%= render "masonry_display" %>
+              </div>
+              <div class="tab-pane" id="tab2">
+                  <div class="comment_content">
+                <div id="disqus_thread"></div>
+                <% if user_signed_in? %>
+                <%= render :partial => "comments/form" %>
+                <% else %> 
+                <%= link_to "Sign Up to Comment", new_user_registration_path %>  
+                <% end %>
+                <%= render :partial => "comments/comments" %>
+
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+  </div>
+</div> 
 <script>
 
 $(window).load(function(){ 
@@ -83,3 +80,4 @@ $(window).load(function(){
       .on('ajax:success', '.description', function(e, data, status, xhr) { $(this).find("span").html(data.count); });
 
   </script>
+  <script src="js/bootstrap.min.js"></script>

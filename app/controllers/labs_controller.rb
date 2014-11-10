@@ -1,7 +1,7 @@
 class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
-
+  
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :verify_admin, :except => [:index, :show]
   
@@ -18,7 +18,10 @@ class LabsController < ApplicationController
   # GET /labs/1.json
   def show
     @lab = Lab.find(params[:id])
-
+    @commentable = @lab
+    @comments = @commentable.comments
+    @comment = Comment.new
+    @user = @comment.user
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @lab }

@@ -11,6 +11,7 @@ Crowdhoster::Application.routes.draw do
         put "dislike", to: "mainoptions#downvote"
       end
     end
+    resources :comments
   end
 
 
