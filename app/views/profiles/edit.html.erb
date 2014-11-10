@@ -1,0 +1,28 @@
+<div class= "profile-content">
+	<div class = "w-container">
+		<div class="w-col-9">
+			<div class = "w-section">
+			</br>
+				<h3> Edit Your Profile </h3>
+				<div class = "w-form">
+			    <%= form_for @profile, :url => profile_path do |form| %>
+			        <div>
+			          <%= form.file_field :avatar%>
+			        </div>
+			        
+
+			        <div class="field">
+			          <%= form.text_field :about, placeholder: "About", class: "w-input text-field-one-third" %>
+			        </div>
+			      
+			        <%= form.submit "Update", class: "w-button button hero-button" %>
+			      
+			    <% end %>
+			  </div>
+
+
+
+			</div>
+		</div>
+	</div>
+</div>

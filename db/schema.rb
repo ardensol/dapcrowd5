@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141108224009) do
+ActiveRecord::Schema.define(:version => 20141109214234) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -185,6 +185,21 @@ ActiveRecord::Schema.define(:version => 20141108224009) do
     t.string   "ct_user_id"
   end
 
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "height"
+    t.integer  "weight"
+    t.text     "about"
+    t.string   "location"
+    t.string   "byline"
+    t.decimal  "savings"
+    t.boolean  "blogger"
+    t.boolean  "vendor"
+    t.boolean  "moderator"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "prototypes", :force => true do |t|
     t.string   "name"
     t.string   "image_file_name"
@@ -277,6 +292,10 @@ ActiveRecord::Schema.define(:version => 20141108224009) do
     t.string   "provider"
     t.string   "uid"
     t.string   "landing_page"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

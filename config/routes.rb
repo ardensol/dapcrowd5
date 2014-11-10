@@ -36,6 +36,7 @@ Crowdhoster::Application.routes.draw do
 
 
   # USERS
+  resources :profiles
   devise_for :users, 
     path: 'account', 
     controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks"} 
@@ -88,6 +89,7 @@ Crowdhoster::Application.routes.draw do
   resources :campaigns do 
     resources :comments
   end
+
   
   namespace :api, defaults: {format: 'json'} do
     scope module: :v0  do
