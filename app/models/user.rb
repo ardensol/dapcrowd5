@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_one :profile, :dependent => :destroy, autosave: true
   accepts_nested_attributes_for :profile       
   has_many :comments
-
+  acts_as_voter
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, 
     :wants_admin_payment_notification, :landing_page, :avatar, :profile_attributes
