@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :fullname, 
     :wants_admin_payment_notification, :landing_page, :avatar, :profile_attributes
 
-  has_attached_file :avatar, :styles => {:medium => "225x225#", :thumb => "90x90>", :mini => "40x40#"} 
+  has_attached_file :avatar, :styles => {:medium => "225x225#", :thumb => "90x90>", :mini => "40x40#"}, :default_url => "/assets/profile_default.png" 
   # Validate presence of user inputs.
   # (most in this model are handled by Devise -- email, password, and password_confirmation)
   validates :fullname, presence: true
