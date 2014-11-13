@@ -1,4 +1,6 @@
 class Lab < ActiveRecord::Base
+	extend FriendlyId
+  friendly_id :name, use: :slugged
   attr_accessible :description, :image, :name, :show, :mainoptions_attributes
   has_many :mainoptions, dependent: :destroy
   has_many :comments, as: :commentable

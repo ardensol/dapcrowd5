@@ -3,7 +3,10 @@
         <% @labs.each do |lab| %>
           <div class = "box2">
             <figure>
+              <h3> <%= lab.name %> </h3>
               <%=  link_to(image_tag(lab.image.url(:medium)), lab) %>
+              <p> <%= lab.mainoptions.sum(&:score)  %> Votes</p>
+      
             </figure> 
               
           </div>  

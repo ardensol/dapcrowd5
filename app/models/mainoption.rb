@@ -1,5 +1,5 @@
 class Mainoption < ActiveRecord::Base
-  attr_accessible :description, :image, :name, :show, :lab_id
+  attr_accessible :description, :image, :name, :show, :lab_id, :estimated_price, :number_of_backers
   acts_as_votable
   belongs_to :lab
 

@@ -3,7 +3,14 @@
                 <% @lab.mainoptions.order('cached_votes_up DESC').each do |f| %>
                   <div class = "box" style = "background: #fff;">
                     <figure>
-                      <%=  image_tag f.image(:medium) %>
+                      <h3> <%= f.name %> </h3>
+
+                      <%=  image_tag f.image(:medium) %> 
+                      <span style="align: left;"><p> Est. Price: <%= number_to_currency(f.estimated_price, precision: 0) %> 
+                         <span style="float: right;">Est. Minimum: <%= f.number_of_backers %> </p></span>
+   
+                      <p> <%=f.description %> </p>
+
                       <% if user_signed_in?  %>
                         <p class = "description"> <%= link_to "upvote", like_mainoption_path(f), class: 'vote', method: :put, remote: true, data: { type: :json } %> 
                         <%= content_tag :span, f.score %> </p>

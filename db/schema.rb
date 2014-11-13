@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141109214234) do
+ActiveRecord::Schema.define(:version => 20141112232630) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20141109214234) do
     t.string   "description"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "slug"
   end
 
   create_table "mainoptions", :force => true do |t|
@@ -142,6 +143,8 @@ ActiveRecord::Schema.define(:version => 20141109214234) do
     t.integer  "cached_weighted_score",   :default => 0
     t.integer  "cached_weighted_total",   :default => 0
     t.float    "cached_weighted_average", :default => 0.0
+    t.decimal  "estimated_price"
+    t.integer  "number_of_backers"
   end
 
   add_index "mainoptions", ["cached_votes_down"], :name => "index_mainoptions_on_cached_votes_down"

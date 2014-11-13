@@ -11,13 +11,23 @@
     </div>
   <% end %>
 
+  <%= collection_select(:mainoption, :lab_id, Lab.all, :id, :name) %>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :image %><br />
-    <%= f.text_field :image %>
+    <%= f.file_field :image %>
+  </div>
+    <div class="field">
+    <%= f.label :estimated_price %><br />
+    <%= f.text_field :estimated_price %>
+  </div>
+   <div class="field">
+    <%= f.label :number_of_backers %><br />
+    <%= f.text_field :number_of_backers %>
   </div>
   <div class="field">
     <%= f.label :show %><br />
