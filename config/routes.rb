@@ -38,6 +38,9 @@ Crowdhoster::Application.routes.draw do
 
   # USERS
   resources :profiles
+  match '/profiles/:id/comments',                      to: 'profiles#comment'
+
+
   devise_for :users, 
     path: 'account', 
     controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks"} 

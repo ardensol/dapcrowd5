@@ -37,7 +37,6 @@
 				<div class="tab-menu">
 					<%= link_to "Votes", profile_path(@profile), class: 'tab' %>
 					<%= link_to "Comments", {controller: "profiles", action: "comment"}, id: @profile, class: "tab" %>
-					
 				</div>	
 			</div>	
 		</div>
@@ -46,19 +45,24 @@
 	<div class = "w-container">
 		<div class="w-col-9">
 			<div class = "w-section">
-				<h3> Votes </h3>
+				<h3> Comments </h3>
 
+				<div class="profile-comments">
 					</br>
-					<% @profile.user.find_voted_items.each do |f| %>
-						<div class="box" style = "background: #fff;">	
+					<% @comments.each do |comment| %>
+						<div class="comment">	
 							<div class="comment-body">
-								<div><%= link_to image_tag f.image(:medium) %> </div>
-								<div>Total Votes <%= f.votes_for.size %> </div>
+								<div><%= @profile.user.fullname%> added a comment to <%= link_to comment.commentable.name, polymorphic_url(comment.commentable) %> </div>
+
+								<div><%= comment.content %></div>
 							</div>
+
+						<hr class ="comments-rule child">
+					
 						</div>	
 					<% end %>
 
-				
+				</div>
 			</div>
 		</div>
 	</div>	

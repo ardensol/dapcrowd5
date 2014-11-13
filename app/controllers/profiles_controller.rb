@@ -25,6 +25,16 @@ class ProfilesController < ApplicationController
     end
   end
 
+
+  def comment
+    @profile = Profile.find(params[:id])
+    @comments = @profile.user.comments
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @profile }
+    end
+  end
   # GET /labs/new
   # GET /labs/new.json
   def new
