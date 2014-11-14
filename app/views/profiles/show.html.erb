@@ -7,12 +7,16 @@
 					<%= image_tag @profile.user.avatar.url(:medium), :class => "circular-image" %>
 				</div>
 				<div class = "profile-header"> 
-					<h3><%= @profile.user.fullname %></h3>
+					<h3><%= @profile.user.fullname %><% if @profile.vendor %>
+					<span><%= image_tag("maker_badge.png", size: "25x25") %></span>
+					<% else %>
+					<% end %></h3>
 
 					<% if @profile.user == current_user %>
 						<%= link_to "Edit Profile", "/user/settings" %>
 					<%else%>
 					<%end%>
+					
 
 
 
