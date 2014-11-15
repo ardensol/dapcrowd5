@@ -2,7 +2,26 @@
         <div class="w-container">
           <a class="w-nav-brand w-clearfix" href="/">
             <%= image_tag("logo-horizontal-2.png", width: "300") %>
-            <nav class="w-nav-menu2" role="navigation"><a class="w-nav-link2 nav-link" href="/wedding">Weddings</a><a class="w-nav-link2 nav-link" href="/#portfolio">Projects</a><a class="w-nav-link2 nav-link" href="/labs">The Lab</a><a class="w-nav-link2 nav-link" href="/discussion">The Forum</a>
+            <nav class="w-nav-menu2" role="navigation"><a class="w-nav-link2 nav-link" href="/#portfolio">Projects</a><a class="w-nav-link2 nav-link" href="/labs">The Lab</a><a class="w-nav-link2 nav-link" href="/wedding">Weddings</a>
+          <% if signed_in? %>    
+            <li class="w-nav-link2">
+                <a class="dropdown-toggle"
+                   data-toggle="dropdown"
+                   style="color: #999; text-transform: uppercase; font-size: 12px; "
+                   >
+                    <%= current_user.fullname %>
+                    <b class="caret" style="vertical-align: middle; border-top: 4px solid #999;"></b>
+                  </a>
+                <ul class="dropdown-menu">
+                  <a><%= link_to('My Profile', profile_path(current_user.profile), :class => "w-nav-link2 nav-link") %></a>
+                  <a class="w-nav-link2 nav-link" href="/discussion">The Forum</a>
+                  <a><%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "w-nav-link2 nav-link") %></a>            
+                </ul>
+            </li>
+          <% else %>            
+             <a><%= link_to('Login', new_user_session_path, :class => "w-nav-link2 nav-link")  %></a>
+             <a><%= link_to('Sign Up', new_user_registration_path, :class => "w-nav-link2 nav-link")  %></a>
+          <% end %>
             </nav>
           </a>
           
