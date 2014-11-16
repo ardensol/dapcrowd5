@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141112232630) do
+ActiveRecord::Schema.define(:version => 20141116203035) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -186,6 +186,21 @@ ActiveRecord::Schema.define(:version => 20141112232630) do
     t.string   "ct_charge_request_id"
     t.string   "ct_charge_request_error_id"
     t.string   "ct_user_id"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "main_image_file_name"
+    t.string   "main_image_content_type"
+    t.integer  "main_image_file_size"
+    t.datetime "main_image_updated_at"
+    t.string   "sub_title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.string   "slug"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "name"
+    t.string   "summary"
   end
 
   create_table "profiles", :force => true do |t|

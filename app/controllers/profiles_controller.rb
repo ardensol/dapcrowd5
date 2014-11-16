@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   # GET /labs
   # GET /labs.json
 
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :comment]
   
   def index
     @profiles = Profile.all

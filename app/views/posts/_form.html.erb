@@ -1,0 +1,38 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= collection_select(:post, :user_id, User.all, :id, :fullname) %>
+
+  <div class="field">
+    <%= f.label :main_image %><br />
+    <%= f.file_field :main_image %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :sub_title %><br />
+    <%= f.text_field :sub_title %>
+  </div>
+   <div class="field">
+    <%= f.label :summary %><br />
+    <%= f.text_field :summary %>
+  </div>   
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.cktext_area :content %>
+  </div>
+    <%= f.submit %>
+  </div>
+<% end %>

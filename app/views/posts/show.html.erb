@@ -1,0 +1,33 @@
+
+<h2><%= @post.name %></h2>
+
+<div class="post-subtitle"><%= @post.sub_title %></div>
+
+<div class = "w-container">
+	<div class = "post-row">
+	    <%= image_tag @post.main_image.url(:large), :class => "post-main_image" %>
+	</div>
+	<hr class="comments-rule">
+		
+	<a class="user-image-link-post"><%=link_to( image_tag(@post.user.avatar.url(:medium), :class => "circular-image-mini"), profile_path(@post.user.profile)) %> by <%= link_to(@post.user.fullname, @post.user.profile) %></a>
+		<span style="float: right; text-align: vertical;"> <%= @post.created_at.strftime("%b. %d, %Y") %></span>
+	<hr class="comments-rule">
+
+	<br>
+	    <%= raw(@post.content) %>
+	
+	<hr class="comments-rule">
+
+	<h3> Discussion (<%= @post.comments.count %>) </h3>    
+	
+
+	<% if user_signed_in? %>
+	    <%= render :partial => "comments/form2" %>
+    <% else %> 
+	    <%= link_to "Sign Up to Comment", new_user_registration_path %>  
+    <% end %>
+    
+    <%= render :partial => "comments/comments" %>
+
+
+</div>

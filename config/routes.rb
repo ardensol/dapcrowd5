@@ -1,5 +1,7 @@
 Crowdhoster::Application.routes.draw do
 
+ 
+
   get "comments/index"
 
   get "comments/new"
@@ -35,6 +37,10 @@ Crowdhoster::Application.routes.draw do
 
   # PAGES
   root :to => 'pages#index'
+
+  resources :posts do 
+    resources :comments
+  end
 
   # USERS
   resources :profiles

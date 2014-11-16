@@ -1242,6 +1242,93 @@ p {
   margin-left: 11em;
 }
 
+.post-icon{
+  width: 15px;
+}
+
+.post-subtitle {
+  color: #999;
+  font-style: italic;
+  margin-bottom: 1.3em;
+  margin-top: -15px;
+  text-align: center;
+}
+
+.post-main_image {
+  vertical-align: middle;
+}
+
+.post-row {
+  margin-left: -45px;
+  margin-right: -45px;
+}
+
+.post-index {
+  margin-bottom: 1em;
+  background: #eee;
+  position: relative;
+}
+
+.post-index .post-text {
+    padding: 0.5em 1.2em;
+    padding-top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 3.3em;
+    bottom: 3.5em;
+    overflow: auto;
+    overflow-x: hidden; 
+  }
+
+
+.post-index > .post-details {
+
+  width: 46%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}  
+
+
+.post-index .short {
+  border-top: 1px solid #999;
+  text-shadow: 0 1px 0 #fff;
+  padding: 0.74em 1em;
+  margin: 0;
+  line-height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+}
+
+.post-info {
+  padding: 1em 1.5em;
+  line-height: 150%;
+  margin: 0%;
+}
+
+.post-index .post-index-image {
+  width: 54%;
+  float: left;
+  box-sizing: border-box;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.right {
+  float: right;
+}
+
+
+
+
 html.w-mod-js *[data-ix="display-none"] {
   display: none;
 }
