@@ -730,7 +730,7 @@ textarea.w-select {
 }
 @media screen and (max-width: 479px) {
   .w-container {
-    max-width: none;
+    max-width: 479px;
   }
   .w-hidden-main {
     display: inherit !important;

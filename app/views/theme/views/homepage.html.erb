@@ -24,76 +24,83 @@
     </div>
 
 
-    <div class="campaigns">
+    <div class="w-container">
+      <div class ="post-feed">
+        <% if @campaigns.count > 0 %>
+          <% @campaigns.each do |campaign| %>
+            <% if campaign.published_flag %>
+            <div class="post-index">  
 
-      <% if @campaigns.count > 0 %>
-        <% @campaigns.each do |campaign| %>
-          <% if campaign.published_flag %>
-          <a href="<%= url_for campaign_home_path(campaign) %>" class="campaign clearfix">
+                <% if campaign.media_type == 'video' && !campaign.video_embed_id.blank?%>
 
-            <% if campaign.media_type == 'video' && !campaign.video_embed_id.blank?%>
+                  <% if campaign.video_placeholder.file? %>
+                    <%= image_tag campaign.video_placeholder.url(:main), alt: "main_image" %>
+                  <% else %>
+                    <%= image_tag "https://img.youtube.com/vi/#{campaign.video_embed_id}/hqdefault.jpg", alt: "main_image" %>
+                  <% end %>
 
-              <% if campaign.video_placeholder.file? %>
-                <%= image_tag campaign.video_placeholder.url(:main), alt: "main_image" %>
-              <% else %>
-                <%= image_tag "https://img.youtube.com/vi/#{campaign.video_embed_id}/hqdefault.jpg", alt: "main_image" %>
-              <% end %>
+                <% else %>
 
-            <% else %>
+                  <% if campaign.main_image.file? %>
+                    <div class= "post-index-image">
+                    <%= link_to image_tag(campaign.main_image.url(:index)), campaign_home_path(campaign) %>
+                    </div>
+                  <% else %>
+                    <div class="placeholder"></div>
+                  <% end %>
 
-              <% if campaign.main_image.file? %>
-                <%= image_tag campaign.main_image.url(:small), alt: "main_image" %>
-              <% else %>
-                <div class="placeholder"></div>
-              <% end %>
+                <% end %>
 
-            <% end %>
 
-            <p class="info">
-              <%= truncate(campaign.name, length: 50) %>
-            </p>
+                <div class = "post-details">
+                  <div class = "post-info">
+                    <% if campaign.expired? %>
+                      <strong>No</strong> days left!
+                    <% else %>
+                      <%= distance_of_time_in_words_to_now(campaign.expiration_date).gsub(/\D/, "") %>
+                      
+                      <%= distance_of_time_in_words_to_now(campaign.expiration_date).gsub(/\d/, "").gsub("about", "") %> left
+                      
+                    <% end %>
+                    
+                    <span class = "right"><%= image_tag(("commentbubble.png"), :class => "post-icon") %> <%= campaign.comments.count %></span>                  
+                  </div>
 
-            <% if campaign.raised_amount.to_f/100 < campaign.goal_dollars.to_f %>
-              <div id='progress_bg'>
-                <div id='progress' class='' style='width: <%= campaign.tilt_percent.nil? ? 0 : campaign.tilt_percent.ceil %>%;'>
-                </div>
+                  <div class = "post-text">
+                    
+                    <h2 style="margin-bottom: 0px;"><%= link_to truncate(campaign.name, length: 50), campaign_home_path(campaign) %></h2></br>  
+                    <p><%= truncate(campaign.summary, length: 100) %></p>
+
+                  </div>  
+
+                  <div class= "short">  
+                    <% if campaign.raised_amount.to_f/100 < campaign.goal_dollars.to_f %>
+                      
+                      
+                      <span class='progress_bg right'>
+                        <div class='progress' style='width: <%= campaign.tilt_percent.nil? ? 0 : campaign.tilt_percent.ceil %>%;'>
+                        </div>
+                      </span>
+                    </br>
+                      <p class="right"><%= campaign.tilt_percent.nil? ? 0 : campaign.tilt_percent.ceil %> % to goal</p> 
+                    <% else %>
+                      <div id="progress_bg right">
+                        <div id="progress">
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                 </div>   
+             <div style="clear: both;"></div> 
               </div>
-            <% else %>
-              <div id="progress_bg">
-                <div id="progress">
-                </div>
-                </div>
             <% end %>
-
-            <p class="numbers pull-left">
-              <% if campaign.goal_type == 'dollars' %>
-              <strong>$<%= campaign.raised_amount.ceil %></strong><br/>
-              <%= campaign.progress_text %>
-              <% else %>
-               <strong><%= campaign.orders %></strong><br/>
-              <%= campaign.contributor_reference.pluralize(campaign.orders) %>
-              <% end %>
-            </p>
-
-            <p class="numbers pull-right" style="text-align:right">
-            <% if campaign.expired? %>
-              <strong>No</strong><br/>days left!
-            <% else %>
-              <strong><%= distance_of_time_in_words_to_now(campaign.expiration_date).gsub(/\D/, "") %></strong>
-              <span style="display: block; width: 100px;">
-                <%= distance_of_time_in_words_to_now(campaign.expiration_date).gsub(/\d/, "").gsub("about", "") %> left
-              </span>
-            <% end %>
-            </p>
-
-          </a>
           <% end %>
+        <% else %>
+
+        <div class="center" style="padding-left:0px"><h4>No campaigns yet. <% if user_signed_in? && current_user.admin? %><%= link_to 'Start one now!', new_admin_campaign_path %><% end %></h4></div>
+
         <% end %>
-      <% else %>
-
-      <div class="center" style="padding-left:0px"><h4>No campaigns yet. <% if user_signed_in? && current_user.admin? %><%= link_to 'Start one now!', new_admin_campaign_path %><% end %></h4></div>
-
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

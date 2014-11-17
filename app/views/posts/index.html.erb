@@ -10,7 +10,7 @@
       <div class = "post-index-image">
         <%= link_to( image_tag(post.main_image.url(:medium)), post_path(post) )%>
       </div>
-      <div class = "post-details", style: "height">
+      <div class = "post-details">
         <div class = "post-info">
           <span> <%= post.created_at.strftime("%b. %d, %Y") %> </span>
           <span class = "right"><%= image_tag(("commentbubble.png"), :class => "post-icon") %> <%= post.comments.count %></span>

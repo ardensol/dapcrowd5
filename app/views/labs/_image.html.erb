@@ -12,15 +12,10 @@
           </div>  
           
             <% if user_signed_in? && current_user.admin?  %>
-              <td><%= link_to 'Show', lab %></td>
-              <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
               <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end %>
       </div>
 
       <br />
-      <% if user_signed_in? && current_user.admin? %>
-      <%= link_to 'New lab', new_lab_path %>
-      <% end %>
 </div>
