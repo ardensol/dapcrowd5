@@ -1289,8 +1289,7 @@ p {
 
 .progress_bg {
         
-        background-color: #f2f2f2
-        width: 100%;
+        background-color: #f2f2f2;
         height: 5px;
         margin-bottom: 1rem;
         position: relative;
