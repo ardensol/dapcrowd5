@@ -66,10 +66,6 @@
                   <label class="price"><%= short_price(reward.price, '$') %> +</label>
                   <div class="reward_description">
                     <p class="title"><%= reward.title %></p>
-                    <p class="claimed">
-                      <%= reward.payments.successful.count %> <%= "of #{reward.number}" unless reward.unlimited? %> claimed
-                      <% if reward.sold_out? %> (All gone!) <% end %>
-                    </p>
                     <p class="description"><%= reward.description %></p>
                     <p class="delivery">Estimated Delivery: <%= reward.delivery_date %></p>
                   </div>

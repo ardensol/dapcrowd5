@@ -8,18 +8,25 @@
         <form accept-charset="UTF-8" action="<%= checkout_process_path(@campaign) %>" method="post" id="payment_form" data-error-action="<%= checkout_error_path(@campaign) %>" data-user-create-action="<%= ajax_create_payment_user_path(@campaign) %>">
 
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-          <h4 class="contact">Contact Information</h4>
+          
+          <% if current_user.present? %>
+              <input id="fullname" type="hidden" name="fullname" value="<%= @current_user.fullname %>">
+              <input id="email" type="hidden" name="email" value="<%= @current_user.email %>">
 
-          <fieldset>
-          <label for="fullname">Full Name</label>
-          <input id="fullname" name="fullname" type="text">
+          <% else %>
+             <h4 class="contact">Contact Information</h4>
+           
+            <fieldset>  
+              <label for="fullname">Full Name</label>
+              <input id="fullname" name="fullname" type="text">
 
-          <label for="email">Email Address</label>
-          <input id="email" name="email" type="text">
-
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="text">
+            </fieldset>
+          <% end %>
           <% if @campaign.collect_additional_info %>
           <h4>Additional Information</h4>
-
+          <fieldset>
           <label for="additional_info"><%= @campaign.additional_info_label %></label>
           <textarea id="additional_info" name="additional_info"></textarea>
           <% end %>
@@ -126,14 +133,24 @@
           <input id="ct_user_id" type="hidden" name="ct_user_id" value="">
 
           <input id="quantity" type="hidden" name="quantity" value="<%= @quantity %>">
-          <input id="amount" type="hidden" name="amount" value="<%= @amount %>">
+          
+          <% if current_user.present?  && current_user.store_credits_total > 0 %>
+            <% if @amount - @store_credit_amount > 1 %>
+              <input id="amount" type="hidden" name="amount" value="<%= @amount - @store_credit_amount %>">
+            <%else%>
+              <input id="amount" type="hidden" name="amount" value="1">
+            <%end%>
+          <% else %>
+            <input id="amount" type="hidden" name="amount" value="<%= @amount  %>">
+          <% end %>
           <input id="fee" type="hidden" name="fee" value="<%= @fee %>">
           <input id="reward" type="hidden" name="reward" value="<%= @reward ? @reward.id : '0' %>">
           <input id="client_timestamp" type="hidden" name="client_timestamp" value="">
-
+          <input id="store_credit_amount" type="hidden" name="store_credit_amount" value="<%= @store_credit_amount ? @store_credit_amount : '0' %>">
           <% if !@campaign.production_flag %>
             <div style="color: red; margin-top: 10px;">This campaign is in sandbox mode, your card will not actually be charged.</div>
           <% end%>
+
 
           <div class="payment-submit javascript-only">
             <button class="button button-hero show_loader" type="submit" data-total="<%= number_with_precision(@total, precision: 2) %>" data-loader="payment_form">
@@ -176,24 +193,37 @@
             <p>Subtotal</p>
           <% end %>
           </td>
-          <td style="text-align: right"><p><%= short_price(@amount, '$', 2) %></p></td>
+          <td style="text-align: right"><p> <%= short_price(@amount, '$', 2) %></p></td>
           </tr>
+
+          <% if user_signed_in? && @store_credit_amount > 0 %>
+          <tr>
+          <td width="225"><p>Store Credit</p></td>
+          <td style="text-align: right"><p>-<%= short_price(@store_credit_amount, '$', 2) %></p></td>
+          </tr>
+          <% end %>
 
           <% if @fee > 0 %>
           <tr>
           <td width="225"><p>Processing Fee</p></td>
-          <td style="text-align: right"><p><%= short_price(@fee, '$', 2) %></p></td>
+          <td style="text-align: right"><p> <%= short_price(@fee, '$', 2) %></p></td>
           </tr>
           <% end %>
 
           <tr>
           <td width="225"><p><strong>Total</strong></p></td>
-          <td style="text-align: right"><p><strong><%= short_price(@total, '$', 2) %></strong></p></td>
+          <td style="text-align: right"><p><strong> <%= short_price(@total, '$', 2) %></strong></p></td>
           </tr>
 
           <% if !@campaign.production_flag %>
           <tr>
           <td colspan='2' ><p>*This campaign is in sandbox mode, your card will not actually be charged.</p></td>
+          </tr>
+          <% end %>
+
+          <% if user_signed_in? && @amount - @store_credit_amount < 1 %>
+          <tr>
+          <td colspan='2' ><p>*In order to complete your transaction we do have to charge at least $1.  We apologize for the inconvenience.</p></td>
           </tr>
           <% end %>
 

@@ -61,6 +61,11 @@ Crowdhoster::Application.routes.draw do
     match '/user/settings',                    to: 'devise/registrations#edit',             as: :user_settings
   end
 
+  resources :store_credits
+  resources :users do
+    resources :store_credits
+  end
+
   match '/discussion',                     to: 'pages#discussion'
   
   match '/fitguide',                     to: 'pages#fitguide'

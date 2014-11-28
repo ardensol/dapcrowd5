@@ -18,7 +18,7 @@ class Campaign < ActiveRecord::Base
                   :include_rewards, :reward_reference, :collect_additional_info, :additional_info_label,
                   :include_comments, :comments_shortname, :include_rewards_claimed, :summary
 
-  attr_accessor :main_image_delete, :video_placeholder_delete, :facebook_image_delete
+  attr_accessor :main_image_delete, :video_placeholder_delete, :facebook_image_delete, :store_credit_amount, :remove_store_credits
 
   validates :name, :expiration_date, presence: true
   validates :min_payment_amount, numericality: { greater_than_or_equal_to: 1.0 }
@@ -39,6 +39,7 @@ class Campaign < ActiveRecord::Base
                     styles: { thumb: "100x100#" }
 
   before_save :set_min_amount
+  
 
   def update_api_data(campaign)
     self.ct_campaign_id = campaign['id']
@@ -84,6 +85,8 @@ class Campaign < ActiveRecord::Base
   def tilt_percent
     (raised_amount / goal_dollars) * 100.0
   end
+
+
 
   private
 

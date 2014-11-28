@@ -50,28 +50,44 @@ class CampaignsController < ApplicationController
       if params.has_key?(:reward) && params[:reward].to_i != 0
         begin
           @reward = Reward.find(params[:reward])
-        rescue StandardError => exception
+          rescue StandardError => exception
           redirect_to checkout_amount_url(@campaign), flash: { info: "This reward is unavailable. Please select a different reward!" }
           return
         end
+        
         unless @reward && @reward.campaign_id == @campaign.id && @amount >= @reward.price && !@reward.sold_out?
-          if @reward.sold_out?
-            flash = { info: "This reward is unavailable. Please select a different reward!" }
-          else
-            flash = { warning: "Please enter a higher amount to redeem this reward!" }
+          
+          unless (@amount + current_user.store_credits_total) >= @reward.price
+            if @reward.sold_out?
+              flash = { info: "This reward is unavailable. Please select a different reward!" }
+            else
+              flash = { warning: "Please enter a higher amount to redeem this reward!" }
+            end
+            redirect_to checkout_amount_url(@campaign), flash: flash and return
           end
-          redirect_to checkout_amount_url(@campaign), flash: flash and return
         end
       end
-
+      
     else
       redirect_to checkout_amount_url(@campaign), flash: { info: "Please enter a higher amount!" }
       return
     end
 
     @fee = (@campaign.apply_processing_fee)? calculate_processing_fee(@amount * 100)/100.0 : 0
-    @total = @amount + @fee
 
+    if current_user.present?  && current_user.store_credits_total >= 0 
+
+    @store_credit_amount = [@amount, current_user.store_credits_total].min
+    
+      if @amount - @store_credit_amount + @fee > 1
+        @total = @amount - @store_credit_amount + @fee
+      else
+        @total = 1
+      end
+    else
+      @total = @amount + @fee
+
+    end  
   end
 
   def checkout_process
@@ -146,7 +162,8 @@ class CampaignsController < ApplicationController
           billing_postal_code: payment_params[:billing_postal_code],
           quantity: payment_params[:quantity],
           reward: @reward ? @reward.id : 0,
-          additional_info: payment_params[:additional_info]
+          additional_info: payment_params[:additional_info],
+          
         }
       }
       @campaign.production_flag ? Crowdtilt.production(@settings) : Crowdtilt.sandbox
@@ -179,12 +196,37 @@ class CampaignsController < ApplicationController
     @campaign.update_api_data(response['payment']['campaign'])
     @campaign.save
 
+    ## Reduce Store Credit
+
+    if current_user.present?  && current_user.store_credits_total > 0
+      
+      credit_used = @payment.store_credit_amount
+
+        current_user.store_credits.each do |store_credit|
+          break if credit_used == 0
+            if store_credit.remaining_amount > 0
+              if store_credit.remaining_amount > credit_used
+                store_credit.remaining_amount -= credit_used
+                store_credit.save
+                credit_used = 0
+              else
+                credit_used -= store_credit.remaining_amount
+                store_credit.update_attribute(:remaining_amount, 0)
+              end
+            end
+        end
+    end  
+
+
     # Send confirmation emails
     UserMailer.payment_confirmation(@payment, @campaign).deliver rescue 
       logger.info "ERROR WITH EMAIL RECEIPT: #{$!.message}"
 
     AdminMailer.payment_notification(@payment.id).deliver rescue 
       logger.info "ERROR WITH ADMIN NOTIFICATION EMAIL: #{$!.message}"
+
+
+
 
     redirect_to checkout_confirmation_url(@campaign), :status => 303, :flash => { payment_guid: @payment.ct_payment_id }
 
@@ -193,7 +235,6 @@ class CampaignsController < ApplicationController
   def checkout_confirmation
     @payment = Payment.where(:ct_payment_id => flash[:payment_guid]).first
     flash.keep(:payment_guid) # Preserve on refresh of this page only
-
     if flash[:payment_guid].nil? || !@payment
       redirect_to campaign_home_url(@campaign)
     end
@@ -218,6 +259,8 @@ class CampaignsController < ApplicationController
     end
   end
 
+
+
   private
 
   def load_campaign
@@ -232,6 +275,9 @@ class CampaignsController < ApplicationController
         redirect_to root_url, :flash => { :info => "Campaign is no longer available" }
       end
     end
+
+
+
   end
 
   def check_exp
@@ -239,5 +285,9 @@ class CampaignsController < ApplicationController
       redirect_to campaign_home_url(@campaign), :info => { :error => "Campaign is expired!" }
     end
   end
+
+  
+
+
 
 end

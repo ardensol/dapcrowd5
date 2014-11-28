@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :profile, :dependent => :destroy, autosave: true
+  has_many :store_credits
   accepts_nested_attributes_for :profile       
   has_many :comments
   acts_as_voter
@@ -27,6 +28,15 @@ class User < ActiveRecord::Base
       user.fullname = auth.info.name   # assuming the user model has a name
       user.avatar = URI.parse(auth.info.image) if auth.info.image?
     end
+  end
+
+
+  def has_store_credit?
+    store_credits.present?
+  end
+
+  def store_credits_total
+    store_credits.sum(:remaining_amount)
   end
 
 end

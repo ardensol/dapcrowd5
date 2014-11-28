@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141117173452) do
+ActiveRecord::Schema.define(:version => 20141127231251) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -187,6 +187,7 @@ ActiveRecord::Schema.define(:version => 20141117173452) do
     t.string   "ct_charge_request_id"
     t.string   "ct_charge_request_error_id"
     t.string   "ct_user_id"
+    t.decimal  "store_credit_amount"
   end
 
   create_table "posts", :force => true do |t|
@@ -290,6 +291,15 @@ ActiveRecord::Schema.define(:version => 20141117173452) do
     t.boolean  "indexable",                   :default => true
     t.integer  "default_campaign_id"
     t.string   "phone_number"
+  end
+
+  create_table "store_credits", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount",           :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "remaining_amount", :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.string   "reason"
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
   end
 
   create_table "users", :force => true do |t|

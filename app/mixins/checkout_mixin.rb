@@ -7,7 +7,7 @@ module CheckoutMixin
   end
 
   def reward_choice_validates?(reward, campaign, payment_in_cents)
-    reward && reward.campaign_id == campaign.id && payment_in_cents >= reward.price && !reward.sold_out?
+    reward && reward.campaign_id == campaign.id && !reward.sold_out?
   end
 
   # create simple payment hash from params. does not include fees/payment amounts/cc info.
@@ -28,7 +28,11 @@ module CheckoutMixin
         state: params.has_key?(:state) ? params[:state] : '',
         postal_code: params.has_key?(:postal_code) ? params[:postal_code] : '',
         country: params.has_key?(:country) ? params[:country] : '',
-        additional_info: params.has_key?(:additional_info) ? params[:additional_info] : ''
+        additional_info: params.has_key?(:additional_info) ? params[:additional_info] : '',
+
+        #Store_Credit
+
+        store_credit_amount: params.has_key?(:store_credit_amount ) ? params[:store_credit_amount] : ''
     }
 
     info[:amount] = (params[:amount].to_f*100).ceil if params[:amount]
@@ -36,4 +40,6 @@ module CheckoutMixin
 
     info
   end
+
+
 end

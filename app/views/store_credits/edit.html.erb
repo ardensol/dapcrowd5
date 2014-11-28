@@ -1,0 +1,9 @@
+<div class = "w-container">
+	<%= form_for(@store_credit) do |f| %>
+	  <%= @store_credit.user.email %>
+	  <%= render :partial => "form", :locals => { :f => f } %>
+	   <h4> Remaining Amount: <%= @store_credit.remaining_amount %></h4>
+	   </br>
+	   <%= f.submit %>
+	<% end %>
+</div>

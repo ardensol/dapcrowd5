@@ -47,6 +47,7 @@
             <th>Quantity</th>
             <% end %>
             <th>Amount</th>
+            <th>Store Credit</th>
             <th>User Fee</th>
             <th>Date</th>
             <th>Status</th>
@@ -63,6 +64,7 @@
             <td><%= payment.quantity %></td>
             <% end %>
             <td class="amount"><%= short_price(payment.amount.to_f/100.0, '$', 2) %></td>
+            <td class="amount"><%= short_price(payment.store_credit_amount.to_f, '$', 2) %></td>
             <td class="user_fee_amount"><%= short_price(payment.user_fee_amount.to_f/100.0, '$', 2) %></td>
             <td><%= payment.created_at.strftime("%m/%d/%Y") %></td>
             <td class="status"><%= payment.status %></td>
