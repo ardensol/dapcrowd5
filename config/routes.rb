@@ -46,6 +46,12 @@ Crowdhoster::Application.routes.draw do
   resources :profiles
   match '/profiles/:id/comments',                      to: 'profiles#comment'
 
+  get 'r/:code' => 'reffiliate#referral', as: 'referral'
+ 
+
+  match 'referafriend' => 'reffiliate#new', :as => 'referafriend', :via => :get
+  match 'referafriend' => 'reffiliate#create', :as => 'referafriend', :via => :post
+  
 
   devise_for :users, 
     path: 'account', 
@@ -53,12 +59,12 @@ Crowdhoster::Application.routes.draw do
   devise_scope :user do
     authenticated :user do
       
-      match '/wedding',                     to: 'pages#wedding'
+      match '/wedding',                                to: 'pages#wedding'
     end
     unauthenticated :user do
-      match '/wedding',                     to: 'pages#wedding_sign_up'
+      match '/wedding',                                to: 'pages#wedding_sign_up'
     end
-    match '/user/settings',                    to: 'devise/registrations#edit',             as: :user_settings
+    match '/user/settings',                            to: 'devise/registrations#edit',             as: :user_settings
   end
 
   resources :store_credits

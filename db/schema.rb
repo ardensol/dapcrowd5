@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141127231251) do
+ActiveRecord::Schema.define(:version => 20141129025354) do
+
+  create_table "affiliates", :force => true do |t|
+    t.string "name"
+    t.string "path"
+  end
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -239,6 +244,21 @@ ActiveRecord::Schema.define(:version => 20141127231251) do
   add_index "prototypes", ["cached_votes_score"], :name => "index_prototypes_on_cached_votes_score"
   add_index "prototypes", ["cached_votes_total"], :name => "index_prototypes_on_cached_votes_total"
   add_index "prototypes", ["cached_votes_up"], :name => "index_prototypes_on_cached_votes_up"
+
+  create_table "referrals", :force => true do |t|
+    t.string  "code"
+    t.integer "user_id"
+  end
+
+  add_index "referrals", ["user_id"], :name => "index_referrals_on_user_id"
+
+  create_table "referred_records", :force => true do |t|
+    t.integer "user_id"
+    t.integer "referral_id"
+    t.integer "affiliate_id"
+  end
+
+  add_index "referred_records", ["user_id", "referral_id", "affiliate_id"], :name => "index_referred_record_on_u_r_a"
 
   create_table "rewards", :force => true do |t|
     t.string   "title"

@@ -1365,7 +1365,15 @@ p {
   float: right;
 }
 
+.light_grey_bg {
+  background-color: #e9e9e9;
+}
 
+.span5 {
+  width: 380px;
+  float: left;
+  margin-left: 20px ;
+}
 
 
 html.w-mod-js *[data-ix="display-none"] {

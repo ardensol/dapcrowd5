@@ -1,0 +1,50 @@
+<div class= 'w-container'>
+	<h2>Invite a Friend Earn $20* </h2>
+	<hr class="comments-rule"></hr>
+	<h5> Every friend you invite gets a $10 credit immediately and you get $20 credit when their first order ships. </h5>
+	</br>
+	</br> 
+	</br> 
+
+	<div class="row">
+		  <div class="w-col-8">
+		  	<div class = "light_grey_bg" style = "width: 540px; padding: 15px; float: left;">
+				<h3> Invite By Email</h3>
+					<%= form_for @message, :url => {action: "create"} do |form| %>
+        
+				        <div class="field">
+				          <%= form.text_area :email, placeholder: "Enter email addresses separated by a comma...", rows: "5", style: "width: 98%;" %>
+				        </div>
+				      	
+				         <%= form.hidden_field :name, placeholder: "Enter Your Name", value: "fakename"%>
+				          <%= form.hidden_field :subject, placeholder: "Subject", value: "subject ignore" %>
+				          <%= form.hidden_field :body, placeholder: "Your Message", value: "body ignore" %>
+				        
+				      
+      
+				        <%= form.submit "Invite", class: "w-button button" %>
+        			<% end %>
+
+		        <span><input type='text' value='<%= referral_url(current_user.referral.code) %>' onClick='this.select();' /></span>
+		        
+		        <span id="share_buttons" style="margin-left: 5px;">
+				  <div class="like"><div class="fb-like" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></div></div>
+				  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Exclusive invites for Dapper Crowd, crowdfunded menswear that doesn't hurt your wallet. Get $10 off:" >Tweet</a></div>
+				  
+				</span>
+		  	</div>
+		  </div>
+
+		  <div class ="span5" style = "float: right;">
+				<h3> Most people invite 3 friends or more. </h3>
+		        <p style = "align: center;"> <%= current_user.referred_count%> friends have joined.</p>
+		        <p style = "align: center;"> You currently have $<%= current_user.store_credits_total %> in credit. </p> 
+		  </div>
+	</div>
+	
+	<hr class="comments-rule"></hr>
+		<p> *We're a growing community.  The more folks we get to crowdfund the better the prices and products we can get. Refer a friend and help us change the way menswear is done.  </p>
+    </br>
+
+
+</div>

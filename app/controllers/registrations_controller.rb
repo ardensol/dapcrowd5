@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+	before_filter :check_referral_and_affiliate, :only => :create
 	def new
 		@nofooter = true
 		@noheader = true
@@ -6,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def create
 		super
-		@user.build_profile
+		@user.build_profile  
 		@user.save!
 	end
 
@@ -29,5 +30,12 @@ class RegistrationsController < Devise::RegistrationsController
 	    else
 	      render "edit"
 	    end
-	  end
+	 end
+
+	def check_referral_and_affiliate
+    	params[:user].merge!(:referral_code => session[:referral], :affiliate_code => session[:affiliate])
+  	end 
+
+  	
+        
 end
