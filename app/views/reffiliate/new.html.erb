@@ -29,7 +29,7 @@
 		        
 		        <span id="share_buttons" style="margin-left: 5px;">
 				  <div class="like"><div class="fb-like" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></div></div>
-				  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Exclusive invites for Dapper Crowd, crowdfunded menswear that doesn't hurt your wallet. Get $10 off:" >Tweet</a></div>
+				  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Exclusive invites for Dapper Crowd, crowdfunded menswear that doesn't hurt your wallet. Get $10 off: <%= referral_url(current_user.referral.code) %>" >Tweet</a></div>
 				  
 				</span>
 		  	</div>
