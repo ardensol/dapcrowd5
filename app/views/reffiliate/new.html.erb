@@ -1,7 +1,7 @@
 <div class= 'w-container'>
 	<h2>Invite a Friend Earn $20* </h2>
 	<hr class="comments-rule"></hr>
-	<h5> Every friend you invite gets a $10 credit immediately and you get $20 credit when their first order ships. </h5>
+	<h5> Every friend you invite gets a $10 credit immediately and you get a $20 credit when their first order ships. </h5>
 	</br>
 	</br> 
 	</br> 
@@ -24,7 +24,7 @@
       
 				        <%= form.submit "Invite", class: "w-button button" %>
         			<% end %>
-
+        		<p><strong>Your personal invite link</strong> Copy and paste this link to share with anyone. </p>	
 		        <span><input type='text' value='<%= referral_url(current_user.referral.code) %>' onClick='this.select();' /></span>
 		        
 		        <span id="share_buttons" style="margin-left: 5px;">
