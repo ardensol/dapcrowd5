@@ -4,7 +4,7 @@ class Mainoption < ActiveRecord::Base
   belongs_to :lab
 
    has_attached_file :image, styles: {
-    medium: '300x300>',
+    medium: '300x',
     large: '512x512>'
   }
 
