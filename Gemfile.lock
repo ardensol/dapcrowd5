@@ -247,6 +247,8 @@ GEM
     shoulda-context (1.1.2)
     shoulda-matchers (2.1.0)
       activesupport (>= 3.0.0)
+    sitemap_generator (5.0.5)
+      builder
     slop (3.4.5)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -292,6 +294,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   faker
+  fog
   foreman
   friendly_id (~> 4.0.9)
   iso_country_codes
@@ -312,5 +315,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda
+  sitemap_generator
   uglifier (>= 1.0.3)
   unicorn

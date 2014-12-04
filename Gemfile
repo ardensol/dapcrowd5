@@ -26,6 +26,8 @@ gem 'masonry-rails'
 gem 'customerio', :git => 'https://github.com/customerio/customerio-ruby'
 gem 'omniauth-facebook'
 gem 'obfuscate_id'
+gem 'sitemap_generator'
+gem 'fog'
 
 
 group :production do
