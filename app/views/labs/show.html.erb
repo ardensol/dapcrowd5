@@ -14,13 +14,14 @@
             <h5> <%= @lab.description %> </h5>	
             <div>
               <p> Voters </p>
-              <%  @array = @lab.mainoptions.collect do |f| %>
+              <% array = [] %>
+              <%  @lab.mainoptions.each do |f| %>
                 <%  f.votes_for.voters.each do |p| %>
-                    <% p.id %>
+                    <% array << p.id %>
                 <% end %>
               <% end %>
 
-              <% @array.uniq.each do |p| %>
+              <% array.uniq.each do |p| %>
                   <% u = User.find_by_id(p) %>
                  <%= link_to( image_tag(u.avatar(:mini), :class => "circular-image-mini"), profile_path(u.profile))  %>
               <% end %>   
