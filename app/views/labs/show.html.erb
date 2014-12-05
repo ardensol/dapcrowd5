@@ -14,18 +14,23 @@
             <h5> <%= @lab.description %> </h5>	
             <div>
               <p> Voters </p>
-              <% @lab.mainoptions.each do |f| %>
-                <%  f.votes_for.voters.uniq { |a| a.id }.each do |p| %>
-                   <%= link_to( image_tag(p.avatar(:mini), :class => "circular-image-mini"), profile_path(p.profile)) %> 
+              <%  @lab.mainoptions.each do |f| %>
+                <%  @array = f.votes_for.voters.collect do |p| %>
+                    <% p.id %>
                 <% end %>
-              <% end %>  
+              <% end %>
+
+              <% @array.uniq.each do |p| %>
+                  <% u = User.find_by_id(p) %>
+                 <%= link_to( image_tag(u.avatar(:mini), :class => "circular-image-mini"), profile_path(u.profile))  %>
+              <% end %>   
+
             </div>
           </div>
        </div>
      </div>   
   </div>
 </div>
-
 </br>
 <div id="campaign_body">
   <div class="container clearfix">
