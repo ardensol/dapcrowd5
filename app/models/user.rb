@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.fullname = auth.info.name   # assuming the user model has a name
       user.avatar = URI.parse(auth.info.image) if auth.info.image?
+      user.build_profile
+      user.save
     end
   end
 
