@@ -14,8 +14,8 @@
             <h5> <%= @lab.description %> </h5>	
             <div>
               <p> Voters </p>
-              <%  @lab.mainoptions.each do |f| %>
-                <%  @array = f.votes_for.voters.collect do |p| %>
+              <%  @array = @lab.mainoptions.collect do |f| %>
+                <%  f.votes_for.voters.each do |p| %>
                     <% p.id %>
                 <% end %>
               <% end %>
