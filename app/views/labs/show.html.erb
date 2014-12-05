@@ -15,7 +15,7 @@
             <div>
               <p> Voters </p>
               <% @lab.mainoptions.each do |f| %>
-                <%  f.votes_for.voters.each do |p| %>
+                <%  f.votes_for.voters.uniq { |a| a.id }.each do |p| %>
                    <%= link_to( image_tag(p.avatar(:mini), :class => "circular-image-mini"), profile_path(p.profile)) %> 
                 <% end %>
               <% end %>  
