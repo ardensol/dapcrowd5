@@ -29,7 +29,6 @@ gem 'obfuscate_id'
 gem 'sitemap_generator'
 gem 'fog'
 
-
 group :production do
   gem 'newrelic_rpm'
   gem 'lograge'
