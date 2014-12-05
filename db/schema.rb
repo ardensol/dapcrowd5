@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141129025354) do
+ActiveRecord::Schema.define(:version => 20141205233459) do
 
   create_table "affiliates", :force => true do |t|
     t.string "name"
@@ -221,8 +221,9 @@ ActiveRecord::Schema.define(:version => 20141129025354) do
     t.boolean  "blogger"
     t.boolean  "vendor"
     t.boolean  "moderator"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.boolean  "buysamerican"
   end
 
   create_table "prototypes", :force => true do |t|

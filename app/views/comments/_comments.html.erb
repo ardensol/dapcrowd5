@@ -7,6 +7,10 @@
 				<span><%= image_tag("maker_badge.png", size: "15x15") %></span>
 				<% else %>
 				<% end %>
+				<% if comment.user.profile.buysamerican %>
+				<span><%= image_tag("usflag.jpg", size: "25x13") %></span>
+				<% else %>
+				<% end %>
 			</div>
 
 			
