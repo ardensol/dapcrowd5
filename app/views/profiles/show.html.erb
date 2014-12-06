@@ -8,9 +8,14 @@
 				</div>
 				<div class = "profile-header"> 
 					<h3><%= @profile.user.fullname %><% if @profile.vendor %>
-					<span><%= image_tag("maker_badge.png", size: "25x25") %></span>
+					<span><%= image_tag("maker_badge.png", size: "25x25", :data => {:toggle=>"tooltip", :title=>"Maker"}) %></span>
 					<% else %>
-					<% end %></h3>
+					<% end %>
+					<% if @profile.buysamerican %>
+				<span><%= image_tag("usflag.jpg", size: "25x13", :data => {:toggle=>"tooltip", :title=>"Buys American Made"}) %></span>
+				<% else %>
+				<% end %>
+					</h3>
 
 					<% if @profile.user == current_user %>
 						<%= link_to "Edit Profile", "/user/settings" %>
