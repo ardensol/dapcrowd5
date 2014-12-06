@@ -4,7 +4,6 @@ class CampaignsController < ApplicationController
   layout 'layouts/checkout'
   before_filter :check_init
   before_filter :load_campaign
-  before_filter :check_published
   before_filter :check_exp, :except => [:home, :checkout_confirmation]
 
   # The load_campaign before filter grabs the campaign object from the db
@@ -268,14 +267,6 @@ class CampaignsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url
   end
-
-  def check_published
-    if !@campaign.published_flag
-      unless user_signed_in? && current_user.admin?
-        redirect_to root_url, :flash => { :info => "Campaign is no longer available" }
-      end
-    end
-
 
 
   end
