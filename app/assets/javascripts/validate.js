@@ -1,6 +1,8 @@
 
 $( document ).ready(function() {
 
+  $('[data-toggle="tooltip"]').tooltip();   
+
   // validate '/admin/site-settings'
   $("#admin_site_settings_form").validate({
     //  by default, validate ignores any currently hidden fields, which is a problem since we allow users to hide fields.

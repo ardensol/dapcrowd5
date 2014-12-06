@@ -4,11 +4,11 @@
 		<div class="comment-body">
 			<div class= "comment-user-name"><%= link_to( comment.user.fullname, profile_path(comment.user.profile)) %>
 				<% if comment.user.profile.vendor %>
-				<span><%= image_tag("maker_badge.png", size: "15x15") %></span>
+				<span><%= image_tag("maker_badge.png", size: "15x15", :data => {:toggle=>"tooltip", :title=>"Maker"}) %></span>
 				<% else %>
 				<% end %>
 				<% if comment.user.profile.buysamerican %>
-				<span><%= image_tag("usflag.jpg", size: "25x13") %></span>
+				<span><%= image_tag("usflag.jpg", size: "25x13", :data => {:toggle=>"tooltip", :title=>"Buys American Made"}) %></span>
 				<% else %>
 				<% end %>
 			</div>
@@ -36,3 +36,4 @@
 	
 	</div>	
 <% end %>
+
