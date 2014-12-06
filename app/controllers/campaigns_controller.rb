@@ -269,8 +269,6 @@ class CampaignsController < ApplicationController
   end
 
 
-  end
-
   def check_exp
     if @campaign.expired?
       redirect_to campaign_home_url(@campaign), :info => { :error => "Campaign is expired!" }
