@@ -36,7 +36,7 @@ Crowdhoster::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
   # PAGES
-  root :to => 'pages#index'
+  
 
   resources :posts do 
     resources :comments
@@ -58,10 +58,13 @@ Crowdhoster::Application.routes.draw do
     controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks"} 
   devise_scope :user do
     authenticated :user do
-      
+      root :to => 'pages#index'
+
       match '/wedding',                                to: 'pages#wedding'
     end
     unauthenticated :user do
+      root :to => 'registrations#new'    
+
       match '/wedding',                                to: 'pages#wedding_sign_up'
     end
     match '/user/settings',                            to: 'devise/registrations#edit',             as: :user_settings
