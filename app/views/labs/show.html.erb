@@ -23,7 +23,7 @@
 
               <% array.uniq.each do |p| %>
                   <% u = User.find_by_id(p) %>
-                 <%= link_to( image_tag(u.avatar(:mini), :class => "circular-image-mini"), profile_path(u.profile), :data => {:toggle=>"tooltip", :title=>"#{u.fullname} </br> Style: #{u.profile.byline}"})  %>
+                 <%= link_to( image_tag(u.avatar(:mini), :class => "circular-image-mini"), profile_path(u.profile), :data => {:toggle=>"tooltip", :title=>"#{u.fullname}</br>#{u.profile.byline}"})  %>
               <% end %>   
 
             </div>

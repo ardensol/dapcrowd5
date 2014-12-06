@@ -26,7 +26,7 @@
 			
 			</div>
 			<div class= "comment-image-container">
-				<a class="user-image-link-post"><%=link_to( image_tag(comment.user.avatar.url(:medium), :class => "circular-image-mini"), profile_path(comment.user.profile), :data => {:toggle=>"tooltip", :title=>"#{comment.user.fullname} </br> Style: #{comment.user.profile.byline}"}) %> </a>
+				<a class="user-image-link-post"><%=link_to( image_tag(comment.user.avatar.url(:medium), :class => "circular-image-mini"), profile_path(comment.user.profile)) %> </a>
 
 			</div>
 			<div><%= comment.content %></div>
