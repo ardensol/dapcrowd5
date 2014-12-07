@@ -80,7 +80,7 @@ class CampaignsController < ApplicationController
 
     if current_user.present?  && current_user.store_credits_total >= 0 
 
-    @store_credit_amount = [@amount + @campaign.shipping, current_user.store_credits_total].min
+    @store_credit_amount = [@amount + @campaign.shipping.to_f, current_user.store_credits_total].min
     
       if @amount - @store_credit_amount + @fee + @campaign.shipping > 1
         @total = @amount - @store_credit_amount + @fee + @campaign.shipping
