@@ -34,7 +34,11 @@ class CampaignsController < ApplicationController
   def checkout_payment
     @reward = false
     params[:amount].sub!(',', '') if params[:amount].present?
-    if @campaign.payment_type == "fixed"
+    if @campaign.payment_type == "fixed"     
+      if params.has_key?(:shirt_size)
+        @shirt_size = params[:shirt_size]
+      else
+      end
       if params.has_key?(:quantity)
         @quantity = params[:quantity].to_i
         @amount = ((@quantity * @campaign.fixed_payment_amount.to_f)*100).ceil/100.0
@@ -76,15 +80,15 @@ class CampaignsController < ApplicationController
 
     if current_user.present?  && current_user.store_credits_total >= 0 
 
-    @store_credit_amount = [@amount, current_user.store_credits_total].min
+    @store_credit_amount = [@amount + @campaign.shipping, current_user.store_credits_total].min
     
-      if @amount - @store_credit_amount + @fee > 1
-        @total = @amount - @store_credit_amount + @fee
+      if @amount - @store_credit_amount + @fee + @campaign.shipping > 1
+        @total = @amount - @store_credit_amount + @fee + @campaign.shipping
       else
         @total = 1
       end
     else
-      @total = @amount + @fee
+      @total = @amount + @fee + @campaign.shipping
 
     end  
   end
@@ -144,6 +148,7 @@ class CampaignsController < ApplicationController
       redirect_to checkout_amount_url(@campaign), flash: flash_msg and return
     end
 
+    
     @payment.reward = @reward if @reward
     @payment.save
 
@@ -162,7 +167,6 @@ class CampaignsController < ApplicationController
           quantity: payment_params[:quantity],
           reward: @reward ? @reward.id : 0,
           additional_info: payment_params[:additional_info],
-          
         }
       }
       @campaign.production_flag ? Crowdtilt.production(@settings) : Crowdtilt.sandbox
@@ -189,6 +193,9 @@ class CampaignsController < ApplicationController
     # Sync payment data
     @payment.update_api_data(response['payment'])
     @payment.ct_charge_request_id = response['request_id']
+    
+
+    @payment.shirt_size = payment_params[:shirt_size]
     @payment.save
 
     # Sync campaign data

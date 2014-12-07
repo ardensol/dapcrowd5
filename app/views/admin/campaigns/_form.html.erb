@@ -14,15 +14,13 @@
         <label>Summary</label>
         <%= f.text_field :summary %>
       </div>
+
       <div class="field clearfix">
-        <p class="explanation">If you set this to be the default campaign, the homepage will redirect to the campaign.</p>
-        <label>Default Campaign?</label>
-        <% if (@settings.default_campaign_id == @campaign.id) %>
-          <%= f.check_box :is_default,  {checked: true} %>
-        <% else %>
-          <%= f.check_box :is_default, {checked: false} %>
-        <% end %>
+        <p class="explanation">Is this a Shirt?</p>
+        <label>Shirt?</label>
+        <%= f.check_box :shirt %>
       </div>
+
       <div class="field clearfix">
         <p class="explanation">You can choose to set your goal based on the dollar amount you raise, or by the number of orders your contributors make.</p>
         <label>Goal</label>
@@ -38,6 +36,13 @@
         <div class="orders_input" style="<%= @campaign.goal_type == 'orders' ? "" : "display:none" %>">
           <%= f.text_field :goal_orders, value: (f.object.goal_orders || 0) %>
         </div>
+
+      </div>
+
+      <div class="field clearfix">
+        <p class="explanation">How much is shipping?</p>
+        <label>Shipping Amount</label>
+        <%= f.text_field :shipping, value: (number_with_precision(f.object.shipping, :precision => 2) || 0) %>
       </div>
 
       <div class="field clearfix">

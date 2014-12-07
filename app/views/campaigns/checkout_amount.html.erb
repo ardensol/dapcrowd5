@@ -30,6 +30,23 @@
             </div>
 
             <input id="amount" type="hidden" name="amount" value="<%= number_with_precision(@campaign.fixed_payment_amount, precision: 2) %>" data-original="<%= number_with_precision(@campaign.fixed_payment_amount, precision: 2) %>"/>
+            <% if @campaign.shirt? %>
+                </br>
+                <h4 class ="amount_header"> Please Choose Your Size <div>
+                  </br>
+                  <select id="shirt_size" name="shirt_size" style="width:65px">
+                    <option value="01" selected>S</option>
+                    <option value="02">M</option>
+                    <option value="03">L</option>
+                    <option value="04">XL</option>
+                    <option value="05">XXL</option>
+                    <option value="06">XXXL</option>
+                  </select>
+                </br>
+            <% else %>
+
+
+            <% end %>
 
           <% else %>
 

@@ -106,6 +106,7 @@
   </div>
 </div>
 
+<% unless @campaign.shirt? %>
 <div id="campaign_body">
   <div class="container clearfix">
     <div class="main_content <%= 'narrow' if @campaign.rewards? %>">
@@ -209,5 +210,6 @@
   </div>
 <% end %>
 </div>
+<% end %>
 
 

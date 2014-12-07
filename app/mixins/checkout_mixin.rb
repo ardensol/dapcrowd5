@@ -32,7 +32,12 @@ module CheckoutMixin
 
         #Store_Credit
 
-        store_credit_amount: params.has_key?(:store_credit_amount ) ? params[:store_credit_amount] : ''
+        store_credit_amount: params.has_key?(:store_credit_amount ) ? params[:store_credit_amount] : '',
+
+        #Shirt_size
+
+        shirt_size: params.has_key?(:shirt_size) ? params[:shirt_size] : ''
+
     }
 
     info[:amount] = (params[:amount].to_f*100).ceil if params[:amount]

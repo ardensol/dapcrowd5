@@ -51,7 +51,7 @@
             </div>
             <div class="pull-right">
               <label for="state">State/Province/Region</label>
-              <input id="state" name="state" type="text" style="width:225px">
+              <input id="state" name="state" type="text" style="width:204px">
             </div>
           </fieldset>
           <fieldset>
@@ -134,14 +134,16 @@
 
           <input id="quantity" type="hidden" name="quantity" value="<%= @quantity %>">
           
+          <input id="shirt_size" type="hidden" name="shirt_size" value="<%= @shirt_size %>">
+
           <% if current_user.present?  && current_user.store_credits_total > 0 %>
-            <% if @amount - @store_credit_amount > 1 %>
-              <input id="amount" type="hidden" name="amount" value="<%= @amount - @store_credit_amount %>">
+            <% if @amount + @campaign.shipping - @store_credit_amount > 1 %>
+              <input id="amount" type="hidden" name="amount" value="<%= @amount - @store_credit_amount + @campaign.shipping %>">
             <%else%>
               <input id="amount" type="hidden" name="amount" value="1">
             <%end%>
           <% else %>
-            <input id="amount" type="hidden" name="amount" value="<%= @amount  %>">
+            <input id="amount" type="hidden" name="amount" value="<%= @amount + @campaign.shipping  %>">
           <% end %>
           <input id="fee" type="hidden" name="fee" value="<%= @fee %>">
           <input id="reward" type="hidden" name="reward" value="<%= @reward ? @reward.id : '0' %>">
@@ -209,6 +211,14 @@
           <td style="text-align: right"><p> <%= short_price(@fee, '$', 2) %></p></td>
           </tr>
           <% end %>
+
+          <% if @campaign.shipping > 0 %>
+          <tr>
+          <td width="225"><p>Shipping</p></td>
+          <td style="text-align: right"><p> <%= short_price(@campaign.shipping, '$', 2) %></p></td>
+          </tr>
+          <% end %>
+
 
           <tr>
           <td width="225"><p><strong>Total</strong></p></td>

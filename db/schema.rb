@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141205233459) do
+ActiveRecord::Schema.define(:version => 20141207192741) do
 
   create_table "affiliates", :force => true do |t|
     t.string "name"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20141205233459) do
     t.string   "comments_shortname"
     t.boolean  "include_rewards_claimed"
     t.string   "summary"
+    t.boolean  "shirt"
+    t.decimal  "shipping"
   end
 
   add_index "campaigns", ["slug"], :name => "index_campaigns_on_slug", :unique => true
@@ -193,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20141205233459) do
     t.string   "ct_charge_request_error_id"
     t.string   "ct_user_id"
     t.decimal  "store_credit_amount"
+    t.string   "shirt_size"
   end
 
   create_table "posts", :force => true do |t|
