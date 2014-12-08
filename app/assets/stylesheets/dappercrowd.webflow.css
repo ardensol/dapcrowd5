@@ -1375,6 +1375,24 @@ p {
   margin-left: 20px ;
 }
 
+@media (min-width:482px) {
+    .desktop-only {
+        display:block !important;
+    }
+    .mobile-only {
+      display: none !important;
+    }
+}
+ 
+@media (max-width: 481px) {
+    .mobile-only {
+        display:block !important;
+    }
+ 
+    .desktop-only {
+        display:none !important;
+    }
+}
 
 html.w-mod-js *[data-ix="display-none"] {
   display: none;
