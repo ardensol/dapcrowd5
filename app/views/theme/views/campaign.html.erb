@@ -1,3 +1,93 @@
+
+<% if @campaign.shirt? %>
+
+<div id="campaign">
+<div id="funding_area">
+  <div class="container clearfix">
+
+    <div class="center">
+      <h2 class="campaign_title"><a href="<%= campaign_home_path(@campaign) %>"><%= @campaign.name %></a></h2>
+    </div>
+
+    <div class="clearfix">
+        <div id="image">
+          <%= image_tag @campaign.main_image.url(:main), alt: "project_image" %>
+        </div>
+        <div id="backing">
+        <div style="margin-top:-15px">
+          <%= render 'shared/share_buttons', campaign: @campaign, settings: @settings %>
+        </div>
+          <div class="call_to_action_description" style="padding-bottom: 5px; padding-top: 20px">
+            <%= raw(@campaign.primary_call_to_action_description) %>
+          </div>
+          <div style="width: 100%">
+            <div class="call_to_action_button" style = "text-align: center;">
+              <% if @campaign.expired? %>
+                <% if @campaign.include_rewards_claimed? %>
+                  <div id="backing">
+                    <ul>
+                      <li class="stats-awards">
+                        <%= @campaign.rewards_claimed %> Claimed Rewards
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
+                <span class="blue_button expired">
+                  <%= @campaign.primary_call_to_action_button %>
+                </span>
+              <% else %>
+                <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button" style="width: 100%; padding: 20px 35px" id="main_cta">
+                  <%= @campaign.primary_call_to_action_button %>
+                </a>
+              <% end %>
+            </div>
+            </br>
+          </div>
+        <div>
+          <% if @campaign.goal_type == 'dollars' %>            
+            <div class="stats">
+              <%= number_to_percentage @campaign.stats_tilt_percent, precision: 0 %><span> funded </span>
+            </div>
+          <% else %>
+            <div class="stats">
+              <%= @campaign.orders %> sold, Available until <%= @campaign.expiration_date.strftime("%b %d" ) %> 
+            </div>
+          <% end %>
+ 
+         
+        </div>
+
+        <% if @campaign.raised_amount < @campaign.goal_dollars %>
+          <div id='progress_bg' class='small' style="height: 10px">
+            <div id='progress' class='' style='width: <%= @campaign.tilt_percent.to_i %>%; height: 10px'>
+            </div>
+          </div>
+        <% else %>
+          <div id="progress_bg" style="height:10px">
+            <div id="progress" style="height:18px" >
+            </div>
+          </div>
+        <% end %>
+
+        <% if @campaign.raised_amount > @campaign.goal_dollars %>
+          </br>
+          <p>We reached our goal! You can keep buying until the campaign ends! </p>
+        <% end %>
+
+         <div class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" style="padding-top:10px; text-align: center" ></div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
+<% else %>
+
 <div id="campaign">
 <div id="funding_area">
   <div class="container clearfix">
@@ -106,7 +196,6 @@
   </div>
 </div>
 
-<% unless @campaign.shirt? %>
 <div id="campaign_body">
   <div class="container clearfix">
     <div class="main_content <%= 'narrow' if @campaign.rewards? %>">
@@ -211,5 +300,4 @@
 <% end %>
 </div>
 <% end %>
-
 
