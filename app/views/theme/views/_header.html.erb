@@ -2,7 +2,7 @@
         <div class="w-container">
           <a class="w-nav-brand w-clearfix" href="/">
             <%= image_tag("logo-horizontal-2.png", width: "300") %>
-            <nav class="w-nav-menu2" role="navigation"><a class="w-nav-link2 nav-link" href="/#portfolio">Projects</a><a class="w-nav-link2 nav-link" href="/labs">The Lab</a><a class="w-nav-link2 nav-link" href="/referafriend">Get $20</a>
+            <nav class="w-nav-menu2" role="navigation"><a class="w-nav-link2 nav-link" href="/#portfolio">Projects</a><%if signed_in?%><a class="w-nav-link2 nav-link" href="/referafriend">Get $20</a><%end%>
           <% if signed_in? %>    
             <li class="w-nav-link2">
                 <a class="dropdown-toggle"
@@ -15,6 +15,7 @@
                 <ul class="dropdown-menu">
                   <a><%= link_to('My Profile', profile_path(current_user.profile), :class => "w-nav-link2 nav-link") %></a>
                   <a class="w-nav-link2 nav-link" href="/discussion">The Forum</a>
+                  <a class="w-nav-link2 nav-link" href="/labs">The Lab</a>
                   <a><%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "w-nav-link2 nav-link") %></a>            
                 </ul>
             </li>
