@@ -33,7 +33,7 @@
             </div>
 
             <% if @campaign.raised_amount < @campaign.goal_dollars %>
-              <div id='progress_bg' class='small' style="height: 10px">
+              <div id='progress_bg' class='small' style="height: 10px; width: 100%">
                 <div id='progress' class='' style='width: <%= @campaign.tilt_percent.to_i %>%; height: 10px'>
                 </div>
               </div>
