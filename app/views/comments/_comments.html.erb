@@ -11,6 +11,10 @@
 				<span><%= image_tag("usflag.jpg", size: "25x13", :data => {:toggle=>"tooltip", :title=>"Buys American Made"}) %></span>
 				<% else %>
 				<% end %>
+				<% if comment.user.profile.moderator %>
+				<span><%= image_tag("inner_circle_badge.png", size: "15x15", :data => {:toggle=>"tooltip", :title=>"Inner Circle Member:</br>Our most active members are involved in design, production and quality control"}) %></span>
+				<% else %>
+				<% end %>
 			</div>
 
 			
