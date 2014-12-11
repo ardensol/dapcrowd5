@@ -1383,6 +1383,13 @@ p {
     .mobile-only {
       display: none !important;
     }
+    .main_content.narrow {
+      width: 620px;
+      float: left;
+    }
+    .commenttextarea {
+      width: 500px;
+    }
 }
  
 @media (max-width: 481px) {
@@ -1393,7 +1400,18 @@ p {
     .desktop-only {
         display:none !important;
     }
+    .main_content.narrow {
+      width: 100%;
+      float: left;
+    }
+    .commenttextarea {
+      width: 100%;
+    }
 }
+
+
+
+
 
 html.w-mod-js *[data-ix="display-none"] {
   display: none;

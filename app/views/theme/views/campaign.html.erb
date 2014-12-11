@@ -2,14 +2,14 @@
 <% if @campaign.shirt? %>
 
 <div id="campaign">
-<div id="funding_area">
-  <div class="w-container">
+  <div id="funding_area">
+    <div class="w-container">
 
-    <div class="center">
-      <h2 class="campaign_title"><a href="<%= campaign_home_path(@campaign) %>"><%= @campaign.name %></a></h2>
-    </div>
-    <div class="clearfix">
-        
+      <div class="center">
+        <h2 class="campaign_title"><a href="<%= campaign_home_path(@campaign) %>"><%= @campaign.name %></a></h2>
+      </div>
+      <div class="clearfix">
+          
 
          <!--Mobile Display  -->
 
@@ -44,14 +44,14 @@
               </div>
             <% end %>
 
-            
+             <div class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" style="padding-top:10px; text-align: center" >  
+             </div>
 
-             <div class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" style="padding-top:10px; text-align: center" >  </div>
+             <span style="float: right; font-size: 150%; margin-top: 13px; padding: 15px">Hanes Tagless Tee: <%= short_price(@campaign.fixed_payment_amount, '$', 2) %>
+             </span>
 
-             <span style="float: right; font-size: 150%; margin-top: 13px; padding: 15px">Hanes Tagless Tee: <%= short_price(@campaign.fixed_payment_amount, '$', 2) %></span>
 
-
-               <div style="width: 100%">
+              <div style="width: 100%">
                 <div class="call_to_action_button" style = "text-align: center;">
                   <% if @campaign.expired? %>
                     <% if @campaign.include_rewards_claimed? %>
@@ -79,20 +79,18 @@
                 <% if @campaign.raised_amount > @campaign.goal_dollars %>
                   </br>
                   <p>We reached our goal! You can keep buying until the campaign ends! </p>
-                     <% else %>
+                <% else %>
                   <h3 style="text-align:center">Only <%= @campaign.goal_orders - @campaign.orders %> more needed to print! </h3>
                   <p> Don't worry, you won't be charged unless the minimum is reached. <a href="/howitworks">Learn more</a> </p>
-
-            <% end %>
+                <% end %>
               </div>
           
             <div style="padding: 5px">
               <%= render 'shared/share_buttons', campaign: @campaign, settings: @settings %>
             </div>
-              <div class="call_to_action_description" style="padding-bottom: 5px; padding-top: 20px">
-                <%= raw(@campaign.primary_call_to_action_description) %>
-              </div>
-          
+            <div class="call_to_action_description" style="padding-bottom: 5px; padding-top: 20px">
+              <%= raw(@campaign.primary_call_to_action_description) %>
+            </div>          
           </div>
         </div>
 
@@ -103,41 +101,42 @@
           <div id="image">
           <%= image_tag @campaign.main_image.url(:main), alt: "project_image", style: "width: 100%; height: 100%" %>
           </div>
-          <div id="backing">
-        
+          <div id="backing">        
             <div style="margin-top:-15px">
               <%= render 'shared/share_buttons', campaign: @campaign, settings: @settings %>
             </div>
-              <div class="call_to_action_description" style="padding-bottom: 5px; padding-top: 20px">
-                <%= raw(@campaign.primary_call_to_action_description) %>
-              </div>
-              <div style="text-align: center; font-size: 150%; padding: 10px">Hanes Tagless Tee: <%= short_price(@campaign.fixed_payment_amount, '$', 2) %></div>
-              <div style="width: 100%">
-                <div class="call_to_action_button" style = "text-align: center;">
-                  <% if @campaign.expired? %>
-                    <% if @campaign.include_rewards_claimed? %>
-                      <div id="backing">
-                        <ul>
-                          <li class="stats-awards">
-                            <%= @campaign.rewards_claimed %> Claimed Rewards
-                          </li>
-                        </ul>
-                      </div>
-                    <% end %>
-                    <span class="blue_button expired">
-                      <%= @campaign.primary_call_to_action_button %>
-                    </span>
-                  <% else %>
-                    <div>
-                    <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button" style="width: 100%; padding: 20px 35px" id="main_cta">
-                      <%= @campaign.primary_call_to_action_button %>
-                    </a>
+            <div class="call_to_action_description" style="padding-bottom: 5px; padding-top: 20px">
+              <%= raw(@campaign.primary_call_to_action_description) %>
+            </div>
+            <div style="text-align: center; font-size: 150%; padding: 10px">Hanes Tagless Tee: <%= short_price(@campaign.fixed_payment_amount, '$', 2) %>
+            </div>
+            <div style="width: 100%">
+              <div class="call_to_action_button" style = "text-align: center;">
+                <% if @campaign.expired? %>
+                  <% if @campaign.include_rewards_claimed? %>
+                    <div id="backing">
+                      <ul>
+                        <li class="stats-awards">
+                          <%= @campaign.rewards_claimed %> Claimed Rewards
+                        </li>
+                      </ul>
                     </div>
                   <% end %>
-                
-                </div>
-                </br>
+                  <span class="blue_button expired">
+                    <%= @campaign.primary_call_to_action_button %>
+                  </span>
+                <% else %>
+                  <div>
+                  <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button" style="width: 100%; padding: 20px 35px" id="main_cta">
+                    <%= @campaign.primary_call_to_action_button %>
+                  </a>
+                  </div>
+                <% end %>
+              
               </div>
+              </br>
+            </div>
+
             <div>
               <% if @campaign.goal_type == 'dollars' %>            
                 <div class="stats">
@@ -147,9 +146,7 @@
                 <div class="stats">
                   <%= @campaign.orders %> sold, Available until <%= @campaign.expiration_date.strftime("%b %d" ) %> 
                 </div>
-              <% end %>
-     
-             
+              <% end %>             
             </div>
 
             <% if @campaign.raised_amount < @campaign.goal_dollars %>
@@ -170,19 +167,15 @@
               <% else %>
               <h3 style="text-align:center">Only <%= @campaign.goal_orders - @campaign.orders %> more needed to print! </h3>
               <p> Don't worry, you won't be charged unless the minimum is reached. <a href="/howitworks">Learn more</a> </p>
-
             <% end %>
 
              <div class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" style="padding-top:10px; text-align: center" ></div>
 
            </div>
-        </div>   
-      
+        </div>           
+      </div>
     </div>
-
-
-
-  </div>
+  </div>  
 </div>
 
 
@@ -288,73 +281,36 @@
 
 <div id="campaign_body">
   <div class="w-container clearfix">
-      
-    <!--Mobile Display  -->
-    <div class = "mobile-only">
-      <div class="main_content <%= 'narrow' if @campaign.rewards? %>" style="width:100%">
-        <% if @campaign.include_comments %>
-          <div class="tabbable <%= 'narrow' if @campaign.rewards? %>">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-              <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane fade active in" id="tab1">
-                <%= raw(@campaign.main_content) %>
-              </div>
-              <div class="tab-pane fade in" id="tab2">
-                <div class="comment_content">
-                  <div id="disqus_thread"></div>
-                  <% if user_signed_in? %>
-                  <%= render :partial => "comments/form" %>
-                  <% else %> 
-                  <%= link_to "Sign Up to Comment", new_user_registration_path %>  
-                  <% end %>
-                  <%= render :partial => "comments/comments" %>
+    <div class="main_content <%= 'narrow' if @campaign.rewards? %>">
+      <% if @campaign.include_comments %>
+        <div class="tabbable <%= 'narrow' if @campaign.rewards? %>">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+            <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade active in" id="tab1">
+              <%= raw(@campaign.main_content) %>
+            </div>
+            <div class="tab-pane fade in" id="tab2">
+              <div class="comment_content">
+                <div id="disqus_thread"></div>
+                <% if user_signed_in? %>
+                <%= render :partial => "comments/form" %>
+                <% else %> 
+                <%= link_to "Sign Up to Comment", new_user_registration_path %>  
+                <% end %>
+                <%= render :partial => "comments/comments" %>
 
-                </div>
               </div>
             </div>
           </div>
-        <% else %>
-          <%= raw(@campaign.main_content) %>
-        <% end %>
-      </div>
-    </div>  
-
-    <!--Mobile Display  -->
-      <div class = "desktop-only">
-        <div class="main_content <%= 'narrow' if @campaign.rewards? %>">
-          <% if @campaign.include_comments %>
-            <div class="tabbable <%= 'narrow' if @campaign.rewards? %>">
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-                <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
-              </ul>
-              <div class="tab-content">
-                <div class="tab-pane fade active in" id="tab1">
-                  <%= raw(@campaign.main_content) %>
-                </div>
-                <div class="tab-pane fade in" id="tab2">
-                  <div class="comment_content">
-                    <div id="disqus_thread"></div>
-                    <% if user_signed_in? %>
-                    <%= render :partial => "comments/form" %>
-                    <% else %> 
-                    <%= link_to "Sign Up to Comment", new_user_registration_path %>  
-                    <% end %>
-                    <%= render :partial => "comments/comments" %>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% else %>
-            <%= raw(@campaign.main_content) %>
-          <% end %>
         </div>
-      </div>
-
+      <% else %>
+        <%= raw(@campaign.main_content) %>
+      <% end %>
+    </div>
+     
     <% if @campaign.rewards? %>
       <div class="rewards_sidebar">
         <h3><%= @campaign.reward_reference.pluralize.titleize %></h3>
@@ -390,8 +346,7 @@
         <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button" id="secondary_cta">
           <%= @campaign.secondary_call_to_action_button %>
         </a>
-      <% end %>
-      
+      <% end %>    
     </div>
   </div>
 </div>
