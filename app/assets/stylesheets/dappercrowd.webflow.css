@@ -726,7 +726,7 @@ p {
 }
 .nav-link {
   margin-right: 2px;
-  padding: 18px;
+  padding: 10px;
   border: 2px solid transparent;
   border-radius: 9px;
   opacity: 1;
@@ -736,6 +736,7 @@ p {
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
+  padding-top: 18px;
 }
 .nav-link:hover {
   border-style: solid;
