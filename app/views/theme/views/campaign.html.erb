@@ -14,8 +14,8 @@
          <!--Mobile Display  -->
 
          <div class="mobile-only">
-           <div id="image" style="width:100%;">
-          <%= image_tag @campaign.main_image.url(:main), alt: "project_image", style: "width: 100%; height: 100%" %>
+           <div id="image" style="width:100%; height: 100%">
+          <%= image_tag @campaign.main_image.url(:main), alt: "project_image"%>
           </div>
           <div id="backing" style="width:85%">  
             <div>
@@ -48,7 +48,8 @@
 
              <div class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" style="padding-top:10px; text-align: center" >  </div>
 
-             <span style="float: right; font-size: 150%; margin-top: 13px">Hanes Tagless Tee: <%= short_price(@campaign.fixed_payment_amount, '$', 2) %></span>
+             <span style="float: right; font-size: 150%; margin-top: 13px; padding: 15px">Hanes Tagless Tee: <%= short_price(@campaign.fixed_payment_amount, '$', 2) %></span>
+
 
                <div style="width: 100%">
                 <div class="call_to_action_button" style = "text-align: center;">
@@ -190,46 +191,35 @@
 
 <div id="campaign">
 <div id="funding_area">
-  <div class="container clearfix">
+  <div class="w-container clearfix">
 
     <div class="center">
       <h2 class="campaign_title"><a href="<%= campaign_home_path(@campaign) %>"><%= @campaign.name %></a></h2>
     </div>
 
     <div class="clearfix">
-      <% if @campaign.media_type == 'video' %>
 
-        <div id="video">
-          <% if @campaign.video_placeholder.file? %>
-            <div id="video_image">
-              <%= image_tag @campaign.video_placeholder.url(:main), alt: "video_place_holder" %>
-            </div>
-            <% if !@campaign.video_embed_id.blank? %>
-              <div id="player" class="hidden" style="display: none;">
-                <object width="512" height="385">
-                  <param name="movie" value="https://www.youtube.com/v/<%= @campaign.video_embed_id %>?autohide=1&showinfo=0&rel=0&autoplay=1" />
-                  <param name="allowFullScreen" value="true" />
-                  <param name="allowscriptaccess" value="always" />
-                  <embed src="https://www.youtube.com/v/<%= @campaign.video_embed_id %>?autohide=1&showinfo=0&rel=0&autoplay=1" type="application/x-shockwave-flash" width="512" height="385" allowscriptaccess="always" allowfullscreen="true"></embed>
-                </object>
-              </div>
-            <% end %>
-          <% else %>
-            <% if !@campaign.video_embed_id.blank? %>
-              <iframe width='512' height='385' src="https://www.youtube.com/embed/<%= @campaign.video_embed_id %>?rel=0"></iframe>
-            <% end %>
-          <% end %>
-        </div>
+      <!--Mobile Display  -->
 
-      <% else %>
-
-        <div id="image">
+      <div class="mobile-only">
+        <div id="image" style="width:100%; height: 100%">
           <%= image_tag @campaign.main_image.url(:main), alt: "project_image" %>
-        </div>
+          </div>
+      </div>
 
-      <% end %>
+      <!--Desktop Display  -->
 
-      <div id="backing">
+      <div class="desktop-only">
+          <div id="image" >
+            <%= image_tag @campaign.main_image.url(:main), alt: "project_image" %>
+          </div>
+      </div>
+
+
+
+
+
+      <div id="backing" style="width: 340px">
         <ul>
 
           <% if @campaign.goal_type == 'dollars' %>            
@@ -248,12 +238,12 @@
         </ul>
 
         <% if @campaign.raised_amount < @campaign.goal_dollars %>
-          <div id='progress_bg' class='small'>
+          <div id='progress_bg' class='small' style="width:100%">
             <div id='progress' class='' style='width: <%= @campaign.tilt_percent.to_i %>%;'>
             </div>
           </div>
         <% else %>
-          <div id="progress_bg">
+          <div id="progress_bg" style="width:100%">
             <div id="progress">
             </div>
             <div id='progress_text'><%= @campaign.tilt_percent.ceil %>% <%= @campaign.progress_text %></div>
@@ -297,36 +287,73 @@
 </div>
 
 <div id="campaign_body">
-  <div class="container clearfix">
-    <div class="main_content <%= 'narrow' if @campaign.rewards? %>">
-      <% if @campaign.include_comments %>
-        <div class="tabbable <%= 'narrow' if @campaign.rewards? %>">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-            <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane fade active in" id="tab1">
-              <%= raw(@campaign.main_content) %>
-            </div>
-            <div class="tab-pane fade in" id="tab2">
-              <div class="comment_content">
-                <div id="disqus_thread"></div>
-                <% if user_signed_in? %>
-                <%= render :partial => "comments/form" %>
-                <% else %> 
-                <%= link_to "Sign Up to Comment", new_user_registration_path %>  
-                <% end %>
-                <%= render :partial => "comments/comments" %>
+  <div class="w-container clearfix">
+      
+    <!--Mobile Display  -->
+    <div class = "mobile-only">
+      <div class="main_content <%= 'narrow' if @campaign.rewards? %>" style="width:100%">
+        <% if @campaign.include_comments %>
+          <div class="tabbable <%= 'narrow' if @campaign.rewards? %>">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+              <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade active in" id="tab1">
+                <%= raw(@campaign.main_content) %>
+              </div>
+              <div class="tab-pane fade in" id="tab2">
+                <div class="comment_content">
+                  <div id="disqus_thread"></div>
+                  <% if user_signed_in? %>
+                  <%= render :partial => "comments/form" %>
+                  <% else %> 
+                  <%= link_to "Sign Up to Comment", new_user_registration_path %>  
+                  <% end %>
+                  <%= render :partial => "comments/comments" %>
 
+                </div>
               </div>
             </div>
           </div>
+        <% else %>
+          <%= raw(@campaign.main_content) %>
+        <% end %>
+      </div>
+    </div>  
+
+    <!--Mobile Display  -->
+      <div class = "desktop-only">
+        <div class="main_content <%= 'narrow' if @campaign.rewards? %>">
+          <% if @campaign.include_comments %>
+            <div class="tabbable <%= 'narrow' if @campaign.rewards? %>">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+                <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade active in" id="tab1">
+                  <%= raw(@campaign.main_content) %>
+                </div>
+                <div class="tab-pane fade in" id="tab2">
+                  <div class="comment_content">
+                    <div id="disqus_thread"></div>
+                    <% if user_signed_in? %>
+                    <%= render :partial => "comments/form" %>
+                    <% else %> 
+                    <%= link_to "Sign Up to Comment", new_user_registration_path %>  
+                    <% end %>
+                    <%= render :partial => "comments/comments" %>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <%= raw(@campaign.main_content) %>
+          <% end %>
         </div>
-      <% else %>
-        <%= raw(@campaign.main_content) %>
-      <% end %>
-    </div>
+      </div>
 
     <% if @campaign.rewards? %>
       <div class="rewards_sidebar">
@@ -352,7 +379,7 @@
 </div>
 
 <div id="second_call_to_action">
-  <div class="container">
+  <div class="w-container">
     <div><%= raw(@campaign.secondary_call_to_action_description) %></div>
     <div class="center">
       <% if @campaign.expired? %>
@@ -371,7 +398,7 @@
 
 <% if @campaign.faqs.count > 0 %>
   <div id="faq">
-    <div class="container clearfix">
+    <div class="w-container clearfix">
       <div class="center">
         <h3>Frequently Asked Questions</h3>
       </div>
