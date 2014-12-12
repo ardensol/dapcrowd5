@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
 
   after_create :create_referral
   after_create :referral_affiliate_check
+  after_create :subscribe_to_mailchimp
 
   def referred_by
     referred_record.try(:referral).try(:user)
@@ -70,6 +71,18 @@ class User < ActiveRecord::Base
     store_credits.sum(:remaining_amount)
   end
 
+  def subscribe_to_mailchimp testing=false
+    return true if (Rails.env.test? && !testing)
+    list_id = ENV['MAILCHIMP_LISTID']
+
+    response = Rails.configuration.mailchimp.lists.subscribe({
+      id: list_id,
+      email: {email: email},
+      fname: {fname: fullname},
+      double_optin: false,
+    })
+    response
+  end
 
   private
       def referral_affiliate_check

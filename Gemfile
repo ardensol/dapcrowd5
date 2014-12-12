@@ -28,6 +28,8 @@ gem 'omniauth-facebook'
 gem 'obfuscate_id'
 gem 'sitemap_generator'
 gem 'fog'
+gem 'gibbon'
+
 
 group :production do
   gem 'newrelic_rpm'
