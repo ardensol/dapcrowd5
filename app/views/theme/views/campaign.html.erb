@@ -80,7 +80,7 @@
                   </br>
                   <p>We reached our goal! You can keep buying until the campaign ends! </p>
                 <% else %>
-                  <h3 style="text-align:center">Only <%= @campaign.goal_orders - @campaign.orders %> more needed to print! </h3>
+                  <h3 style="text-align:center">Only <%= @campaign.goal_orders + @campaign.fake_order - @campaign.orders %> more needed to print! </h3>
                   <p> Don't worry, you won't be charged unless the minimum is reached. <a href="/howitworks">Learn more</a> </p>
                 <% end %>
               </div>
@@ -165,7 +165,7 @@
               </br>
               <p>We reached our goal! You can keep buying until the campaign ends! </p>
               <% else %>
-              <h3 style="text-align:center">Only <%= @campaign.goal_orders - @campaign.orders %> more needed to print! </h3>
+              <h3 style="text-align:center">Only <%= @campaign.goal_orders + @campaign.fake_order - @campaign.orders %> more needed to print! </h3>
               <p> Don't worry, you won't be charged unless the minimum is reached. <a href="/howitworks">Learn more</a> </p>
             <% end %>
 
@@ -222,7 +222,7 @@
           <% else %>
             <li class="stats">
               <%= @campaign.orders %> <%= @campaign.contributor_reference.pluralize(@campaign.orders) %>
-              <span>of <%= @campaign.goal_orders %> needed</span>
+              <span>of <%= @campaign.goal_orders + @campaign.fake_order %> needed</span>
             </li>
           <% end %>
 

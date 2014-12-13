@@ -16,7 +16,7 @@ class Campaign < ActiveRecord::Base
                   :stats_number_of_contributions, :stats_raised_amount, :stats_tilt_percent,
                   :stats_unique_contributors, :published_flag, :collect_shipping_flag, :production_flag,
                   :include_rewards, :reward_reference, :collect_additional_info, :additional_info_label,
-                  :include_comments, :comments_shortname, :include_rewards_claimed, :summary, :shipping, :shirt
+                  :include_comments, :comments_shortname, :include_rewards_claimed, :summary, :shipping, :shirt, :fake_order
 
   attr_accessor :main_image_delete, :video_placeholder_delete, :facebook_image_delete, :store_credit_amount, :remove_store_credits
 
@@ -54,7 +54,7 @@ class Campaign < ActiveRecord::Base
 
   def set_goal
     if self.goal_type == 'orders'
-      self.goal_dollars = ((self.fixed_payment_amount * self.goal_orders)*100).round/100.0
+      self.goal_dollars = (self.fixed_payment_amount * (self.goal_orders)*100).round/100.0
     end
   end
 
@@ -63,7 +63,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def orders
-    (self.stats_raised_amount / self.fixed_payment_amount).to_i
+    (self.stats_raised_amount / self.fixed_payment_amount).to_i + self.fake_order.to_i
   end
 
   def rewards?
@@ -83,7 +83,11 @@ class Campaign < ActiveRecord::Base
   end
 
   def tilt_percent
-    (raised_amount / goal_dollars) * 100.0
+    if self.goal_type == 'orders'
+      ((raised_amount + (fake_order * self.fixed_payment_amount)) / (goal_dollars + (fake_order * self.fixed_payment_amount)))* 100.0
+    else
+      (raised_amount / goal_dollars) * 100.0
+    end
   end
 
 

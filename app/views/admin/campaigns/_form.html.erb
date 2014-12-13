@@ -36,6 +36,10 @@
         <div class="orders_input" style="<%= @campaign.goal_type == 'orders' ? "" : "display:none" %>">
           <%= f.text_field :goal_orders, value: (f.object.goal_orders || 0) %>
         </div>
+        <label> Fake Orders</label>
+        <div class="orders_input" style="<%= @campaign.goal_type == 'orders' ? "" : "display:none" %>">
+          <%= f.text_field :fake_order, value: (f.object.fake_order || 0) %>
+        </div>
 
       </div>
 
