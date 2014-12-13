@@ -4,7 +4,7 @@
 
   .main_content {
     width: 530px;
-    float: left;
+    float: right;
     h3 {
       margin: 0px 0px 30px;
       color: #4b4b4b;
@@ -138,11 +138,7 @@
 
     fieldset {
       display: inline-block;
-    }
-
-    #fullname, #email, #address_one, #address_two, #additional_info{
-      width: 460px;
-      height: 30px;
+      width: 100%;
     }
 
     .billing_address {
@@ -181,7 +177,7 @@
   }
 
   .sidebar {
-    float: right;
+    float: left;
     width: 345px;
 
     .crowdtilt-powered {
