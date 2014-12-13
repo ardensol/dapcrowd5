@@ -9,7 +9,7 @@
           <% if @campaign.payment_type == 'fixed' %>
 
             <div class="quantity_input">
-            <h4 class="amount_header">Please choose a quantity: </h4>
+            <h2 class="amount_header">Please choose a quantity: </h2>
             <br/>
 
               <span><%= short_price(@campaign.fixed_payment_amount, '$', 2) %>&nbsp; x &nbsp;</span>

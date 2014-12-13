@@ -1401,6 +1401,11 @@ p {
     .pull-left-billing {
       float: left;
     }
+
+    .billing-input-half {
+      width: 225px;
+      height: 30px;
+    }
   }
  
 @media (max-width: 481px) {
@@ -1411,11 +1416,21 @@ p {
     .desktop-only {
         display:none !important;
     }
+
+    .billing-input-half {
+      width: 100%;
+      height: 30px;
+    }
     .main_content.narrow {
       width: 100%;
       float: left;
     }
     .commenttextarea {
+      width: 100%;
+    }
+
+    #checkout .sidebar {
+      float: left;
       width: 100%;
     }
 

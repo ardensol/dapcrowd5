@@ -6,7 +6,7 @@
       </div>
       <div class="well">
         <div class="clearfix">
-          <h4 class="pull-left">Payment Summary</h4>
+          <h2 class="pull-left" style="font-size:20px; margin-bottom: 10px;" >Payment Summary</h2>
           <p class="pull-right"><%= link_to "edit", checkout_amount_path(@campaign) %></p>
         </div>
 
@@ -98,7 +98,7 @@
               <input id="email" type="hidden" name="email" value="<%= @current_user.email %>">
 
           <% else %>
-             <h4 class="contact">Contact Information</h4>
+             <h2 class="contact">Contact Information</h2>
            
             <fieldset>  
               <label for="fullname">Full Name</label>
@@ -117,7 +117,7 @@
           </fieldset>
 
           <% if (@campaign.payment_type == 'fixed' && @campaign.collect_shipping_flag) || (@reward && @reward.collect_shipping_flag) %>
-          <h4>Shipping Address</h4>
+          <h2 class="contact">Shipping Address</h2>
 
           <fieldset>
             <div>
@@ -156,7 +156,7 @@
           </fieldset>
           <% end %>
 
-          <h4>Credit/Debit Card <i class="icon icon-lock show_tooltip" data-placement="top" data-title="Payments are encrypted"></i></h4>
+          <h2 class="contact">Credit/Debit Card <i class="icon icon-lock show_tooltip" data-placement="top" data-title="Payments are encrypted" style="margin-bottom: 10px"></i></h2>
 
           <fieldset>
             <div class="clearfix">
@@ -208,12 +208,7 @@
 
             </div>
             </fieldset>
-            <fieldset>
-              <div class="clearfix">
-                
-             
-              </div>
-            </fieldset>
+         
           <label for="card_number" class="error" style="display: none"></label>
           <label for="security_code" class="error" style="display: none"></label>
           <label for="billing_postal_code" class="error" style="display: none"></label>
