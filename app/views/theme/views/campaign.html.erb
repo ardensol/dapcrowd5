@@ -197,99 +197,168 @@
       <div class="mobile-only">
         <div id="image" style="width:100%; height: 100%">
           <%= image_tag @campaign.main_image.url(:main), alt: "project_image" %>
+        </div>
+        <div id="backing" style="width: 85%">
+          <ul>
+
+            <% if @campaign.goal_type == 'dollars' %>            
+              <li class="stats">
+                <%= number_to_percentage @campaign.stats_tilt_percent, precision: 0 %><span> funded </span>
+              </li>
+            <% else %>
+              <li class="stats">
+                <%= @campaign.orders %> <%= @campaign.contributor_reference.pluralize(@campaign.orders) %>
+                <span>of <%= @campaign.goal_orders + @campaign.fake_order %> needed</span>
+              </li>
+            <% end %>
+
+            <li class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" >
+            </li>
+          </ul>
+
+          <% if @campaign.raised_amount < @campaign.goal_dollars %>
+            <div id='progress_bg' class='small' style="width:100%">
+              <div id='progress' class='' style='width: <%= @campaign.tilt_percent.to_i %>%;'>
+              </div>
+            </div>
+          <% else %>
+            <div id="progress_bg" style="width:100%">
+              <div id="progress">
+              </div>
+              <div id='progress_text'><%= @campaign.tilt_percent.ceil %>% <%= @campaign.progress_text %></div>
+            </div>
+          <% end %>
+          <% if @campaign.goal_type == 'orders' %>
+            <div style="margin-top: 60px">         
+              <div style="float: right; font-size: 16px; padding: 2px">
+                Our Price: $<%= @campaign.fixed_payment_amount %>  
+              </div>
+              <% if @campaign.retail_price %>
+                <span style="float: left; font-size: 16px; padding: 2px">Traditional Retail: <span style="text-decoration: line-through">$<%= @campaign.retail_price %> </span></span>
+                <% end %>
+             </div>   
+            
+            </br>
+          <% end %>
+          <div class="share">
+           <%= render 'shared/share_buttons', campaign: @campaign, settings: @settings %>
+          </div>            
+
+          <div id="reserve_container">
+            <div class="call_to_action_button">
+              <% if @campaign.expired? %>
+                <% if @campaign.include_rewards_claimed? %>
+                  <div id="backing">
+                    <ul>
+                      <li class="stats-awards">
+                        <%= @campaign.rewards_claimed %> Claimed Rewards
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
+                <span class="blue_button expired">
+                  <%= @campaign.primary_call_to_action_button %>
+                </span>
+              <% else %>
+                <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button " style="margin-bottom: 0px" id="main_cta">
+                  <%= @campaign.primary_call_to_action_button %>
+                </a>
+              <% end %>
+            </div>
+            <br />
+            <div class="call_to_action_description">
+              <%= raw(@campaign.primary_call_to_action_description) %>
+            </div>
           </div>
+
+        </div>  
       </div>
 
       <!--Desktop Display  -->
 
       <div class="desktop-only">
-          <div id="image" >
-            <%= image_tag @campaign.main_image.url(:main), alt: "project_image" %>
-          </div>
-      </div>
+        <div id="image" >
+          <%= image_tag @campaign.main_image.url(:main), alt: "project_image" %>
+        </div>
+      
+        <div id="backing" style="width: 340px">
+          <ul>
 
+            <% if @campaign.goal_type == 'dollars' %>            
+              <li class="stats">
+                <%= number_to_percentage @campaign.stats_tilt_percent, precision: 0 %><span> funded </span>
+              </li>
+            <% else %>
+              <li class="stats">
+                <%= @campaign.orders %> <%= @campaign.contributor_reference.pluralize(@campaign.orders) %>
+                <span>of <%= @campaign.goal_orders + @campaign.fake_order %> needed</span>
+              </li>
+            <% end %>
 
-
-
-
-      <div id="backing" style="width: 340px">
-        <ul>
-
-          <% if @campaign.goal_type == 'dollars' %>            
             <li class="stats">
-              <%= number_to_percentage @campaign.stats_tilt_percent, precision: 0 %><span> funded </span>
-            </li>
+            Ends </br><%= @campaign.expiration_date.strftime("%b %d" )%></li>
+          </ul>
+
+          <% if @campaign.raised_amount < @campaign.goal_dollars %>
+            <div id='progress_bg' class='small' style="width:100%">
+              <div id='progress' class='' style='width: <%= @campaign.tilt_percent.to_i %>%;'>
+              </div>
+            </div>
           <% else %>
-            <li class="stats">
-              <%= @campaign.orders %> <%= @campaign.contributor_reference.pluralize(@campaign.orders) %>
-              <span>of <%= @campaign.goal_orders + @campaign.fake_order %> needed</span>
-            </li>
+            <div id="progress_bg" style="width:100%">
+              <div id="progress">
+              </div>
+              <div id='progress_text'><%= @campaign.tilt_percent.ceil %>% <%= @campaign.progress_text %></div>
+            </div>
+          <% end %>
+          <% if @campaign.goal_type == 'orders' %>
+            <div style="margin-top: 60px">         
+              <div style="float: right; font-size: 16px; padding: 2px">
+                Our Price: $<%= @campaign.fixed_payment_amount %>  
+              </div>
+              <% if @campaign.retail_price %>
+                <span style="float: left; font-size: 16px; padding: 2px">Traditional Retail: <span style="text-decoration: line-through">$<%= @campaign.retail_price %> </span></span>
+                <% end %>
+             </div>   
+            
+            </br>
           <% end %>
 
-          <li class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" >
-          </li>
-        </ul>
-
-        <% if @campaign.raised_amount < @campaign.goal_dollars %>
-          <div id='progress_bg' class='small' style="width:100%">
-            <div id='progress' class='' style='width: <%= @campaign.tilt_percent.to_i %>%;'>
-            </div>
-          </div>
-        <% else %>
-          <div id="progress_bg" style="width:100%">
-            <div id="progress">
-            </div>
-            <div id='progress_text'><%= @campaign.tilt_percent.ceil %>% <%= @campaign.progress_text %></div>
-          </div>
-        <% end %>
-        <% if @campaign.goal_type == 'orders' %>
-          <div style="margin-top: 60px">         
-            <div style="float: right; font-size: 16px; padding: 2px">
-              Our Price: $<%= @campaign.fixed_payment_amount %>  
-            </div>
-            <% if @campaign.retail_price %>
-              <span style="float: left; font-size: 16px; padding: 2px">Traditional Retail: <span style="text-decoration: line-through">$<%= @campaign.retail_price %> </span></span>
+          <div id="reserve_container">
+            <div class="call_to_action_button">
+              <% if @campaign.expired? %>
+                <% if @campaign.include_rewards_claimed? %>
+                  <div id="backing">
+                    <ul>
+                      <li class="stats-awards">
+                        <%= @campaign.rewards_claimed %> Claimed Rewards
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
+                <span class="blue_button expired">
+                  <%= @campaign.primary_call_to_action_button %>
+                </span>
+              <% else %>
+                <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button " style="margin-bottom: 0px" id="main_cta">
+                  <%= @campaign.primary_call_to_action_button %>
+                </a>
               <% end %>
-           </div>   
-          
-          </br>
-        <% end %>
+            </div>
+            <br />
+            
 
-        <div id="reserve_container">
-          <div class="call_to_action_button">
-            <% if @campaign.expired? %>
-              <% if @campaign.include_rewards_claimed? %>
-                <div id="backing">
-                  <ul>
-                    <li class="stats-awards">
-                      <%= @campaign.rewards_claimed %> Claimed Rewards
-                    </li>
-                  </ul>
-                </div>
-              <% end %>
-              <span class="blue_button expired">
-                <%= @campaign.primary_call_to_action_button %>
-              </span>
-            <% else %>
-              <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button " style="margin-bottom: 0px" id="main_cta">
-                <%= @campaign.primary_call_to_action_button %>
-              </a>
-            <% end %>
-          </div>
-          <br />
-          
-
-          <div class="call_to_action_description">
-            <%= raw(@campaign.primary_call_to_action_description) %>
+            <div class="call_to_action_description">
+              <%= raw(@campaign.primary_call_to_action_description) %>
+            </div>
           </div>
         </div>
+        
       </div>
-    </div>
-
-    <div class="share">
+   </div>
+   <div class="share">
       <%= render 'shared/share_buttons', campaign: @campaign, settings: @settings %>
     </div>
-
   </div>
 </div>
 
