@@ -242,6 +242,18 @@
             <div id='progress_text'><%= @campaign.tilt_percent.ceil %>% <%= @campaign.progress_text %></div>
           </div>
         <% end %>
+        <% if @campaign.goal_type == 'orders' %>
+          <div style="margin-top: 60px">         
+            <div style="float: right; font-size: 18px">
+              Our Price: $<%= @campaign.fixed_payment_amount %>  
+            </div>
+            <% if @campaign.retail_price %>
+              <span style="float: left; font-size: 16px">Traditional Retail: <span style="text-decoration: line-through">$<%= @campaign.retail_price %> </span></span>
+              <% end %>
+           </div>   
+          
+          </br>
+        <% end %>
 
         <div id="reserve_container">
           <div class="call_to_action_button">
@@ -265,6 +277,8 @@
             <% end %>
           </div>
           <br />
+          
+
           <div class="call_to_action_description">
             <%= raw(@campaign.primary_call_to_action_description) %>
           </div>

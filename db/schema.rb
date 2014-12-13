@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141212232805) do
+ActiveRecord::Schema.define(:version => 20141213003410) do
 
   create_table "affiliates", :force => true do |t|
     t.string "name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20141212232805) do
     t.boolean  "shirt"
     t.decimal  "shipping"
     t.integer  "fake_order",                           :default => 0
+    t.decimal  "retail_price"
   end
 
   add_index "campaigns", ["slug"], :name => "index_campaigns_on_slug", :unique => true
