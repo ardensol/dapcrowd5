@@ -131,21 +131,21 @@
           <fieldset>
             <div class="pull-left-billing" style="margin-right: 14px">
               <label for="city">City</label>
-              <input id="city" name="city" type="text" style="width:225px; height: 30px">
+              <input id="city" name="city" type="text" style="width:170px; height: 30px">
             </div>
             <div class="pull-right-billing">
               <label for="state">State/Province/Region</label>
-              <input id="state" name="state" type="text" style="width:204px; height: 30px">
+              <input id="state" name="state" type="text" style="width:170px; height: 30px">
             </div>
           </fieldset>
           <fieldset>
             <div class="pull-left-billing" style="margin-right: 14px">
               <label for="postal_code">Postal Code</label>
-              <input id="postal_code" name="postal_code" type="text" style="width:225px; height: 30px">
+              <input id="postal_code" name="postal_code" type="text" style="width:170px; height: 30px">
             </div>
             <div class="pull-right-billing">
               <label for="country">Country</label>
-              <select id="country" name="country" style="width:204px; height: 30px">
+              <select id="country" name="country" style="width:170px; height: 30px">
                  <option value="" selected>--</option>
                  <option value="USA" >United States</option>
                 <% (IsoCountryCodes.all.map {|code| [code.name, code.alpha3]}).sort.each do |country| %>
@@ -162,8 +162,8 @@
             <div class="clearfix">
               <div class="card_number pull-left-billing" style="margin-right:15px">
                 <label for="card_number">Card Number</label>
-                <input class="javascript-only" name="card_number" id="card_number" type="text" style="width:225px;height: 30px;" autocomplete="off">
-                <noscript><input name="card_number" id="card_number" type="text" style="width:225px; height: 30px" autocomplete="off" disabled></noscript>
+                <input class="javascript-only" name="card_number" id="card_number" type="text" style="width:170px;height: 30px;" autocomplete="off">
+                <noscript><input name="card_number" id="card_number" type="text" style="width:170px; height: 30px" autocomplete="off" disabled></noscript>
               </div>
               <div class="pull-right-billing">
                   <label for="security_code">Security Code</label>
@@ -202,8 +202,8 @@
               </div>
               <div class="billing_postal_code pull-right-billing">
                   <label for="billing_postal_code">Billing Postal Code</label>
-                  <input class="javascript-only" id="billing_postal_code" name="billing_postal_code" type="text"  style="width:215px;height:30px;">
-                  <noscript><input id="billing_postal_code" name="billing_postal_code" type="text"  style="width:215px;height:30px;" disabled></noscript>
+                  <input class="javascript-only" id="billing_postal_code" name="billing_postal_code" type="text"  style="width:170px;height:30px;">
+                  <noscript><input id="billing_postal_code" name="billing_postal_code" type="text"  style="width:170px;height:30px;" disabled></noscript>
               </div>
 
             </div>

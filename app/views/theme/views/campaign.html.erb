@@ -127,7 +127,7 @@
                   </span>
                 <% else %>
                   <div>
-                  <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button" style="width: 100%; padding: 20px 35px" id="main_cta">
+                  <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button" style="width: 100%; padding: 20px 35px; margin-bottom: 0px" id="main_cta">
                     <%= @campaign.primary_call_to_action_button %>
                   </a>
                   </div>
@@ -271,7 +271,7 @@
                 <%= @campaign.primary_call_to_action_button %>
               </span>
             <% else %>
-              <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button  " id="main_cta">
+              <a href="<%= url_for checkout_amount_path(@campaign) %>" class="button hero-button " style="margin-bottom: 0px" id="main_cta">
                 <%= @campaign.primary_call_to_action_button %>
               </a>
             <% end %>
