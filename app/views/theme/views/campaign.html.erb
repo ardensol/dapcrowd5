@@ -44,7 +44,7 @@
               </div>
             <% end %>
 
-             <div class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" style="padding-top:10px; text-align: center" >  
+             <div class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" style="padding-top:10px; text-align: center; " >  
              </div>
 
              <span style="float: right; font-size: 150%; margin-top: 13px; padding: 15px">Hanes Tagless Tee: <%= short_price(@campaign.fixed_payment_amount, '$', 2) %>
@@ -206,13 +206,13 @@
                 <%= number_to_percentage @campaign.stats_tilt_percent, precision: 0 %><span> funded </span>
               </li>
             <% else %>
-              <li class="stats">
+              <li class="stats" style="font-size:16px">
                 <%= @campaign.orders %> <%= @campaign.contributor_reference.pluralize(@campaign.orders) %>
                 <span>of <%= @campaign.goal_orders + @campaign.fake_order %> needed</span>
               </li>
             <% end %>
 
-            <li class="stats" id="days" date-element="<%= @campaign.expiration_date.to_i %>" >
+            <li class="stats" id="days" style="font-size:16px" date-element="<%= @campaign.expiration_date.to_i %>" >
             </li>
           </ul>
 
@@ -230,19 +230,16 @@
           <% end %>
           <% if @campaign.goal_type == 'orders' %>
             <div style="margin-top: 60px">         
-              <div style="float: right; font-size: 16px; padding: 2px">
+              <div style="float: right; font-size: 13px; ">
                 Our Price: $<%= @campaign.fixed_payment_amount %>  
               </div>
               <% if @campaign.retail_price %>
-                <span style="float: left; font-size: 16px; padding: 2px">Traditional Retail: <span style="text-decoration: line-through">$<%= @campaign.retail_price %> </span></span>
+                <span style="float: left; font-size: 13px;">Traditional Retail: <span style="text-decoration: line-through">$<%= @campaign.retail_price %> </span></span>
                 <% end %>
              </div>   
             
             </br>
-          <% end %>
-          <div class="share">
-           <%= render 'shared/share_buttons', campaign: @campaign, settings: @settings %>
-          </div>            
+          <% end %>           
 
           <div id="reserve_container">
             <div class="call_to_action_button">
@@ -356,7 +353,7 @@
         
       </div>
    </div>
-   <div class="share">
+   <div class="share" style="margin-left: 10px">
       <%= render 'shared/share_buttons', campaign: @campaign, settings: @settings %>
     </div>
   </div>
