@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = 'http://www.dappercrowd.com'
+SitemapGenerator::Sitemap.default_host = 'http://dappercrowd.com'
 
 SitemapGenerator::Sitemap.public_path = 'tmp/'
 
