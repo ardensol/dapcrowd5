@@ -206,13 +206,13 @@
                 <%= number_to_percentage @campaign.stats_tilt_percent, precision: 0 %><span> funded </span>
               </li>
             <% else %>
-              <li class="stats" style="font-size:16px">
+              <li class="stats" style="font-size:16px; float: left; padding-right: 7px">
                 <%= @campaign.orders %> <%= @campaign.contributor_reference.pluralize(@campaign.orders) %>
                 <span>of <%= @campaign.goal_orders + @campaign.fake_order %> needed</span>
               </li>
             <% end %>
 
-            <li class="stats" id="days" style="font-size:16px" date-element="<%= @campaign.expiration_date.to_i %>" >
+            <li class="stats" id="days" style="font-size:16px; float: right" date-element="<%= @campaign.expiration_date.to_i %>" >
             </li>
           </ul>
 
