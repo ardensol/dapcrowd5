@@ -1,9 +1,8 @@
 <% content_for :metas do %>
-  <% if @settings.indexable == false %>
-    <meta name="robots" content="noindex, nofollow">
-  <% end %>
   <%= render 'layouts/facebook_metas' %>
   <%= render 'layouts/mobile_bookmark_metas' %>
+    <meta name="google-site-verification" content="90_jQdH7m8_yQBfFTdPUM2Y20530cZ59CbtjBd8RUkw" />
+    <meta name="google-site-verification" content="uR45h3vkEqg6LZNH0COPTTid1L8WcYSdZbUR901ST-4" />      
 <% end %>
 <% content_for :stylesheets do %>
   <style type="text/css"><%= raw(@settings.custom_css) %></style>
