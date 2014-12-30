@@ -30,10 +30,9 @@
         <%= f.text_field :fullname, :class => "signup_field", :autofocus => true, :placeholder => "First Name" %></div>
         <div>
         <%= f.email_field :email, :class => "signup_field", :placeholder => "Email" %></div>
-      </div>
-        <div>
-        <%= f.password_field :password, :class => "signup_field", :placeholder => "Password"%></div>
-
+        <div><%= f.password_field :password, :class => "signup_field", :placeholder => "Password"%></div>
+        <a style="color:grey; font-size:10px; margin-left: 15px;"href="/privacy"> Privacy </a>
+        
         <button class="button hero-button show_loader" data-loader="user_form" type="submit" style="margin-left: 20px; align: left;" >Sign Up</button> 
            <p style="display: inline-block; margin-left: 5px;"> or </p> <a style="display: inline-block; font-size: 20px; color: #969799; vertical-align: middle;" href="/account/sign_in">Login</a><br />
         <span class="loader" data-loader="user_form" style="display:none"></span>

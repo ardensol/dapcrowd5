@@ -34,4 +34,8 @@ class PagesController < ApplicationController
     render 'theme/views/howitworks'
   end
 
+  def privacy
+    render 'theme/views/privacy'
+  end
+
 end
