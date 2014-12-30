@@ -77,6 +77,7 @@ Crowdhoster::Application.routes.draw do
 
   match '/discussion',                     to: 'pages#discussion'
   
+  match '/privacy',                     to: 'pages#privacy'
   match '/fitguide',                     to: 'pages#fitguide'
   match '/howitworks',                     to: 'pages#howitworks'
   match 'contact' => 'contact#new', :as => 'contact', :via => :get
