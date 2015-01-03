@@ -1,62 +1,70 @@
 body {
   height: auto;
 }
+
 h1 {
-  display: block;
-  font-family: Lato, sans-serif;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  display: inline;
+  overflow-x: visible;
+  overflow-y: visible;
+  margin: 284px 1px 16px 0px;
+  padding: 9px 13px 9px 1px;
+  clear: none;
+  font-family: "quatro-slab";
   color: white;
-  font-size: 70px;
+  font-size: 38px;
   line-height: 44px;
-  font-weight: 300;
-  text-align: center;
-  text-transform: uppercase;
+  font-weight: 500;
 }
+
 h2 {
-  margin-bottom: 30px;
-  font-family: Lato, sans-serif;
-  color: #4a4a4a;
-  font-size: 30px;
+  font-family: "quatro-slab";
+  margin: 254px 0px 10px;
+  padding: 9px 13px;
+  font-size: 20px;
   line-height: 36px;
   font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
 }
+
 h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: Lato, sans-serif;
-  font-size: 17px;
+  font-family: "quatro-slab";
+  margin-right: 0px;
+  margin-left: 0px;
+  font-size: 24px;
   line-height: 30px;
-  font-weight: 400;
-  text-align: left;
-  text-transform: uppercase;
-}
-h4 {
-  margin-bottom: 10px;
-  font-family:'Great Vibes', cursive;
-  color: #4a4a4a;
-  line-height: 20px;
   font-weight: 700;
   text-align: center;
-  text-transform: uppercase;
 }
+
+h4 {
+  width: 726px;
+  min-width: 0px;
+  margin: 0px 0px 6px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-width: 1px;
+  border-color: black;
+  box-shadow: none;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  text-shadow: none;
+}
+
 h5 {
-  margin-top: 15px;
-  margin-bottom: 7px;
-  float: left;
-  font-family: Lato, sans-serif;
-  color: black;
-  font-size: 15px;
+  margin-right: 0px;
+  margin-left: 0px;
+  font-family: "brandon-grotesque";
+  font-size: 14px;
   line-height: 20px;
-  font-weight: 400;
-  text-align: left;
-  letter-spacing: 0px;
-  text-transform: uppercase;
+  font-weight: 700;
 }
+
 h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: Lato, sans-serif;
+  margin: 10px 0px;
   font-size: 12px;
   line-height: 18px;
   font-weight: 700;
