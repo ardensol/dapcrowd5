@@ -61,17 +61,13 @@ h6 {
   line-height: 18px;
   font-weight: 700;
 }
+
 p {
-  margin-bottom: 5px;
-  font-family: Lato, sans-serif;
-  color: #969799;
-  font-size: 14px;
-  line-height: 21px;
+  font-family: "brandon-grotesque";
+  margin-bottom: 15px;
   font-weight: 300;
-  text-align: left;
-  letter-spacing: 1px;
-  text-indent: 0px;
-  text-transform: none;
+  font-style: normal;
+  font-size: 18px;
 }
 
 .brandon{
