@@ -4,16 +4,16 @@
   <div id="funding_area">
     <div class="container clearfix">
       <div class="center">
-        <h2 class="campaign_title"><%= @lab.name %></a></h2>
+        <h2 style="font-size: 30px"><%= @lab.name %></a></h2>
       </div>
       <div class="clearfix">      
           <div id="image">
             <%= image_tag @lab.image.url(:large) %>
           </div>
           <div id="backing">
-            <h5> <%= @lab.description %> </h5>	
+            <h5 style="font-size: 15px"> <%= @lab.description %> </h5>	
             <div>
-              <p> Voters </p>
+              <p> Participants </p>
               <% array = [] %>
               <%  @lab.mainoptions.each do |f| %>
                 <%  f.votes_for.voters.each do |p| %>
