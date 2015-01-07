@@ -52,19 +52,17 @@ Crowdhoster::Application.routes.draw do
   match 'referafriend' => 'reffiliate#new', :as => 'referafriend', :via => :get
   match 'referafriend' => 'reffiliate#create', :as => 'referafriend', :via => :post
   
+  root :to => 'pages#index'
 
   devise_for :users, 
     path: 'account', 
     controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks"} 
   devise_scope :user do
     authenticated :user do
-      root :to => 'pages#index'
-
+  
       match '/wedding',                                to: 'pages#wedding'
     end
     unauthenticated :user do
-      root :to => 'registrations#new'    
-
       match '/wedding',                                to: 'pages#wedding_sign_up'
     end
     match '/user/settings',                            to: 'devise/registrations#edit',             as: :user_settings
