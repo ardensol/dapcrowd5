@@ -6,60 +6,21 @@
       <div class="center">
         <h2 style="font-size: 30px"><%= @lab.name %></a></h2>
       </div>
-      <div class="clearfix">      
-          <div id="image">
-            <%= image_tag @lab.image.url(:large) %>
-          </div>
-          <div id="backing">
-            <h5 style="font-size: 15px"> <%= @lab.description %> </h5>	
-            <div>
-              <p> Participants </p>
-              <% array = [] %>
-              <%  @lab.mainoptions.each do |f| %>
-                <%  f.votes_for.voters.each do |p| %>
-                    <% array << p.id %>
-                <% end %>
-              <% end %>
-
-              <% array.uniq.each do |p| %>
-                  <% u = User.find_by_id(p) %>
-                 <%= link_to( image_tag(u.avatar(:mini), :class => "circular-image-mini"), profile_path(u.profile), :data => {:toggle=>"tooltip", :title=>"#{u.fullname}</br>#{u.profile.byline}"})  %>
-              <% end %>   
-
-            </div>
-          </div>
-       </div>
-     </div>   
+    <% if @lab.status == "voting" %>
+      <%= render 'votingheader'%>
+    <% elsif @lab.status == "developing" %> 
+      <%= render 'developingheader' %>
+    <% end %>    
   </div>
 </div>
 </br>
 <div id="campaign_body">
   <div class="container clearfix">
-     <div class="main_content">
-       <div class="tabbable">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-            <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
-          </ul>
-          <div class="tab-content">
-              <div class="tab-pane active" id="tab1">
-                <%= render "masonry_display" %>
-              </div>
-              <div class="tab-pane" id="tab2">
-                  <div class="comment_content">
-                <div id="disqus_thread"></div>
-                <% if user_signed_in? %>
-                <%= render :partial => "comments/form" %>
-                <% else %> 
-                <%= link_to "Sign Up to Comment", new_user_registration_path %>  
-                <% end %>
-                <%= render :partial => "comments/comments" %>
-
-              </div>
-            </div>
-          </div>  
-        </div>
-      </div>
+    <% if @lab.status == "voting" %>
+      <%= render 'votingmain' %>
+    <% elsif @lab.status == "developing" %>
+     <%= render 'developingmain' %>
+    <% end %>
   </div>
 </div> 
 <script>

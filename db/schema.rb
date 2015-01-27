@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141213003410) do
+ActiveRecord::Schema.define(:version => 20150127221344) do
 
   create_table "affiliates", :force => true do |t|
     t.string "name"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20141213003410) do
     t.decimal  "shipping"
     t.integer  "fake_order",                           :default => 0
     t.decimal  "retail_price"
+    t.integer  "lab_id"
   end
 
   add_index "campaigns", ["slug"], :name => "index_campaigns_on_slug", :unique => true
@@ -130,9 +131,16 @@ ActiveRecord::Schema.define(:version => 20141213003410) do
     t.datetime "image_updated_at"
     t.boolean  "show"
     t.string   "description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "slug"
+    t.string   "status"
+    t.string   "about"
+    t.integer  "vote_trigger"
+    t.string   "headerimage_file_name"
+    t.string   "headerimage_content_type"
+    t.integer  "headerimage_file_size"
+    t.datetime "headerimage_updated_at"
   end
 
   create_table "mainoptions", :force => true do |t|

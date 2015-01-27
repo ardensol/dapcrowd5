@@ -1038,20 +1038,28 @@ p {
   margin-bottom: 24px;
 }
 
-.prototype.vote {
-  width: 45%;
-  height: 60px;
+.vote {
+  display: inline-block;
+  margin-top: 59px;
+  border-radius: 7px;
+  background-color: #00c2a2;
+  color: white;
   font-size: 14px;
-  line-height: 60px;
-  bottom: 0;
-  position: absolute;
-  text-align: center;
-  overflow: hidden;
-  vertical-align: top;
-  z-index: 10;
-  cursor: pointer;
-
+  padding: 10px 5px; 
    } 
+
+
+ .voteheader {
+  display: inline-block;
+  border-radius: 7px;
+  background-color: #00c2a2;
+  color: white;
+  font-size: 30px;
+  padding: 19px 120px; 
+  text-transform: uppercase; 
+  margin-top: 20px;
+   }
+
 
 /* Required for jQuery Masonry */
 

@@ -87,4 +87,14 @@ class LabsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upvote
+  @lab = Lab.find(params[:id])
+  @lab.upvote_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @lab.score } }
+    end
+  end
+
 end

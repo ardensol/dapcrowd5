@@ -1,0 +1,13 @@
+<div class = "post-row">
+  <%= image_tag @lab.headerimage.url(:large), :class => "post-main_image" %>
+</div>
+
+<div style="text-align: center;">
+  <% if user_signed_in?  %>
+    <p class = "call_to_action_button" style="font-size: 13px"> <%= link_to "Vote", like_lab_path(@lab), class: 'voteheader', method: :put, remote: true, data: { type: :json } %></p> 
+  <% else %> 
+    <p class = "description" style="font-size: 13px"> <%= link_to "upvote", new_user_registration_path %></p>
+  <% end %>
+  <h3> <%=  @lab.score %> votes of <%= @lab.vote_trigger %> Needed to Launch </h3>
+  <p>Vote for this Factory in order to Crowdfund an item here.  We require double the minimum order quantity of the factory so only vote if you're likely to purchase from the campaign.  Once enough members vote for the Factory we move on to Product Development.</p>
+</div>

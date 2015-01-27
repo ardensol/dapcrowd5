@@ -14,6 +14,10 @@ Crowdhoster::Application.routes.draw do
       end
     end
     resources :comments
+    member do
+      put "like", to: "labs#upvote"
+      put "dislike", to: "labs#downvote"
+    end
   end
 
 

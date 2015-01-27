@@ -16,6 +16,12 @@
       </div>
 
       <div class="field clearfix">
+        <p class="explanation">Which Factory does this belong to?</p>
+        <label>Factory</label>
+        <%= f.collection_select(:lab_id, Lab.all, :id, :name) %>
+      </div>
+
+      <div class="field clearfix">
         <p class="explanation">Is this a Shirt?</p>
         <label>Shirt?</label>
         <%= f.check_box :shirt %>

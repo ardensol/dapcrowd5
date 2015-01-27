@@ -1,0 +1,27 @@
+<div class="main_content">
+ <div class="tabbable">
+  <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+      <li><a href="#tab2" data-toggle="tab" onclick="load_disqus()">Comments <span class="badge badge-info"><%= @commentable.comments.count %></span></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <div>
+            <%= @lab.about %>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <div class="comment_content">
+          <div id="disqus_thread"></div>
+          <% if user_signed_in? %>
+          <%= render :partial => "comments/form" %>
+          <% else %> 
+          <%= link_to "Sign Up to Comment", new_user_registration_path %>  
+          <% end %>
+          <%= render :partial => "comments/comments" %>
+
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>

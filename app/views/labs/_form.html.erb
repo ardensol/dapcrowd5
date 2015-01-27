@@ -12,21 +12,49 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :image %><br />
+    <br />
+    <%= f.label :headerimage %>
+    <%= f.file_field :headerimage %>
+  </div>
+  <br />
+  <div class="field">
+    <br />
+    <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
+  <br />
   <div class="field">
-    <%= f.label :show %><br />
+    <%= f.label :show %>
     <%= f.check_box :show %>
   </div>
+  <br />
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
+  <div class="field">
+    <br />
+    <%= f.label :status %>
+    <%= f.select :status, options_for_select(["voting", "developing", "crowdfunding"], "voting") %>
+  </div>
+
+  <div class="field">
+    <br />
+    <%= f.label :vote_trigger %>
+    <%= f.text_field :vote_trigger %>
+  </div>
+
+  <div class="field">
+    <br />
+    <%= f.label :about %>
+    <%= f.cktext_area :about %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
