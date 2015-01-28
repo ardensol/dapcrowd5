@@ -10,6 +10,8 @@
       <%= render 'votingheader'%>
     <% elsif @lab.status == "developing" %> 
       <%= render 'developingheader' %>
+    <% elsif @lab.status == "crowdfunding" %>
+      <%= render 'crowdfundingheader' %>
     <% end %>    
   </div>
 </div>
@@ -19,7 +21,9 @@
     <% if @lab.status == "voting" %>
       <%= render 'votingmain' %>
     <% elsif @lab.status == "developing" %>
-     <%= render 'developingmain' %>
+      <%= render 'developingmain' %>
+    <% elsif @lab.status == "crowdfunding" %>
+      <%= render 'crowdfundingmain' %>
     <% end %>
   </div>
 </div> 

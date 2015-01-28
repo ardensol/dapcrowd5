@@ -1,0 +1,76 @@
+<div class ="post-feed">
+  <% if @lab.campaigns.count > 0 %>
+    <% @lab.campaigns.each do |campaign| %>
+      <% if campaign.published_flag %>
+      <div class="post-index">  
+
+          <% if campaign.media_type == 'video' && !campaign.video_embed_id.blank?%>
+
+            <% if campaign.video_placeholder.file? %>
+              <%= image_tag campaign.video_placeholder.url(:main), alt: "main_image" %>
+            <% else %>
+              <%= image_tag "https://img.youtube.com/vi/#{campaign.video_embed_id}/hqdefault.jpg", alt: "main_image" %>
+            <% end %>
+
+          <% else %>
+
+            <% if campaign.main_image.file? %>
+              <div class= "post-index-image">
+              <%= link_to image_tag(campaign.main_image.url(:index)), campaign_home_path(campaign) %>
+              </div>
+            <% else %>
+              <div class="placeholder"></div>
+            <% end %>
+
+          <% end %>
+
+
+          <div class = "post-details">
+            <div class = "post-info">
+              <% if campaign.expired? %>
+                <strong>No</strong> days left!
+              <% else %>
+                <%= distance_of_time_in_words_to_now(campaign.expiration_date).gsub(/\D/, "") %>
+                
+                <%= distance_of_time_in_words_to_now(campaign.expiration_date).gsub(/\d/, "").gsub("about", "") %> left
+                
+              <% end %>
+              
+              <span class = "right"><%= image_tag(("commentbubble.png"), :class => "post-icon") %> <%= campaign.comments.count %></span>                  
+            </div>
+
+            <div class = "post-text">
+              
+              <h2 style="margin-bottom: 0px;"><%= link_to truncate(campaign.name, length: 50), campaign_home_path(campaign) %></h2></br>  
+              <p><%= truncate(campaign.summary, length: 100) %></p>
+
+            </div>  
+
+            <div class= "short">  
+              <% if campaign.raised_amount.to_f/100 < campaign.goal_dollars.to_f %>
+                
+                
+                <span class='progress_bg right'>
+                  <div class='progress' style='width: <%= campaign.tilt_percent.nil? ? 0 : campaign.tilt_percent.ceil %>%;'>
+                  </div>
+                </span>
+              </br>
+                <p class="right"><%= campaign.tilt_percent.nil? ? 0 : campaign.tilt_percent.ceil %> % to goal</p> 
+              <% else %>
+                <div id="progress_bg right">
+                  <div id="progress">
+                  </div>
+                </div>
+              <% end %>
+            </div>
+           </div>   
+       <div style="clear: both;"></div> 
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+
+  <div class="center" style="padding-left:0px"><h4>No campaigns yet. <% if user_signed_in? && current_user.admin? %><%= link_to 'Start one now!', new_admin_campaign_path %><% end %></h4></div>
+
+  <% end %>
+</div>
