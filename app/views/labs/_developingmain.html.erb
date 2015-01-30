@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="tab-pane" id="tab3">
-          <%= @lab.about %>
+          <%= raw(@lab.about) %>
         </div>
         <div class="tab-pane" id="tab4">
           <%= render 'campaigns' %>

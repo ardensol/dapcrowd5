@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150127221344) do
+ActiveRecord::Schema.define(:version => 20150130233630) do
 
   create_table "affiliates", :force => true do |t|
     t.string "name"
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(:version => 20150127221344) do
     t.datetime "updated_at",               :null => false
     t.string   "slug"
     t.string   "status"
-    t.string   "about"
+    t.text     "about"
     t.integer  "vote_trigger"
     t.string   "headerimage_file_name"
     t.string   "headerimage_content_type"
