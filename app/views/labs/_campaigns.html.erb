@@ -1,7 +1,6 @@
 <div class ="post-feed">
   <% if @lab.campaigns.count > 0 %>
     <% @lab.campaigns.each do |campaign| %>
-      <% if campaign.published_flag %>
       <div class="post-index">  
 
           <% if campaign.media_type == 'video' && !campaign.video_embed_id.blank?%>
@@ -66,7 +65,6 @@
            </div>   
        <div style="clear: both;"></div> 
         </div>
-      <% end %>
     <% end %>
   <% else %>
 
